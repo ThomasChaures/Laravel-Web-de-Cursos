@@ -10,4 +10,10 @@ class Servicio extends Model
     use HasFactory;
 
     protected $guard = ['id'];
+    protected $fillable = [
+        'nombre',
+        'descripcion',
+        'img',
+        'precio',
+    ];
 }

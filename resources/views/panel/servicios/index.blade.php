@@ -1,12 +1,14 @@
 @extends('panel.layout.panel')
-@section('title', 'Servicios')
+@section('title', 'Cursos')
 
 
 @section('content')
 <section class="p-6 bg-gray-50">
   <h1 class="font-semibold text-cyan-950 text-4xl mb-4">Cursos</h1>
 
-  <div class="overflow-x-auto">
+  <a class="rounded bg-cyan-950 text-white py-2 px-2 mt-6" href="{{route('servicios.create')}}">Agregar nuevo curso</a>
+  
+  <div class="overflow-x-auto mt-6">
     <table class="min-w-full bg-white border border-gray-200">
       <thead class="bg-gray-100">
         <tr>
@@ -24,7 +26,7 @@
             <td class="py-2 px-4 text-gray-700">{{$servicio->id}}</td>
             <td class="py-2 px-4 text-gray-700">{{$servicio->nombre}}</td>
             <td class="py-2 px-4 text-gray-700">{{$servicio->descripcion}}</td>
-            <td class="py-2 px-4 text-gray-700"><img src="{{$servicio->img}}" alt="{{$servicio->nombre}}"></td>
+            <td class="py-2 px-4 text-gray-700"> <img src="{{ asset('uploads/' . $servicio->img) }}" alt="{{ $servicio->nombre }}"></td>
             <td class="py-2 px-4 text-gray-700">${{number_format($servicio->precio, 2)}}</td>
             <td class="py-2 px-4">
               <button class="text-blue-500 hover:underline">Editar</button>

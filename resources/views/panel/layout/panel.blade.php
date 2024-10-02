@@ -8,14 +8,14 @@
 </head>
 <body>
     <header class="w-full bg-cyan-950">
-        <div class="flex items-center justify-between container p-5">
+        <div class="flex items-center justify-between container mx-auto p-5">
             <div class="flex items-end text-white gap-20">
                 <div class="title-head flex items-center">
                     <p class="font-semibold text-3xl" >Panel de Administrador</p>
                 </div>
                 <nav class="flex  items-center">
                     <ul class="flex items-center gap-5 list-none text-lg">
-                        <li class="flex items-center"><a href="">Inicio</a></li>
+                        <li><a href="{{route('servicios.index')}}">Inicio</a></li>
                         <li><a href="">Servicios</a></li>
                         <li><a href="">Usuarios</a></li>
                     </ul>
@@ -28,7 +28,7 @@
         </div>
 
     </header>
-    <main class="container p-5">
+    <main class="container mx-auto p-5">
         @yield('content')
     </main>
 </body>

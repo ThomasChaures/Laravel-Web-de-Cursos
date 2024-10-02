@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('servicios', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 45);
-            $table->string('descripcion', 255);
+            $table->text('descripcion'); // Cambiar a text
             $table->string('img');
             $table->integer('precio');
             $table->timestamps();
         });
+        
     }
 
     /**
