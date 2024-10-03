@@ -30,7 +30,9 @@ class ServiciosController extends Controller
                 'nombre' => 'required|max:45|min:10',
                 'descripcion' => 'required|max:255|min:10',
                 'img' => 'required|image|max:2048',
-                'precio' => 'required|numeric'
+                'precio' => 'required|numeric',
+                'clases' => 'required|numeric',
+                'categoria' => 'required'
             ]);
     
 
@@ -46,7 +48,10 @@ class ServiciosController extends Controller
                     'nombre' => $request->nombre,
                     'descripcion' => $request->descripcion,
                     'img' => $imagenNombre,
-                    'precio' => $request->precio
+                    'precio' => $request->precio,
+                    'clases' => $request->clases,
+                    'categoria' => $request->categoria,
+                    'estudiantes' => 0
                 ]);
             }
     
@@ -83,7 +88,9 @@ class ServiciosController extends Controller
             'nombre' => 'required|max:45|min:10',
             'descripcion' => 'required|max:255|min:10',
             'img' => 'image|max:2048',
-            'precio' => 'required|numeric'
+            'precio' => 'required|numeric',
+            'clases' => 'required|numeric',
+            'categoria' => 'required'
         ]);
 
         if ($request->hasFile('img')) {
@@ -98,13 +105,17 @@ class ServiciosController extends Controller
                 'nombre' => $request->nombre,
                 'descripcion' => $request->descripcion,
                 'img' => $imagenNombre,
-                'precio' => $request->precio
+                'precio' => $request->precio,
+                'categoria' => $request->categoria,
+                'clases' => $request->clases
             ]);
         } else {
             $servicios->update([
                 'nombre' => $request->nombre,
                 'descripcion' => $request->descripcion,
-                'precio' => $request->precio
+                'precio' => $request->precio,
+                'categoria' => $request->categoria,
+                'clases' => $request->clases
             ]);
         }
     return redirect()->route('servicios.index');

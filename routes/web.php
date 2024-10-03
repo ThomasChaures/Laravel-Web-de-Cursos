@@ -1,12 +1,16 @@
 <?php
 
+use App\Http\Controllers\FrontController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ServiciosController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [App\Http\Controllers\FrontController::class, 'index'])->name('home');
+Route::get('cursos', [App\Http\Controllers\FrontController::class, 'cursos'])->name('cursos');
+Route::get('novedades', [App\Http\Controllers\FrontController::class, 'novedades'])->name('novedades');
+Route::get('novedad', [App\Http\Controllers\FrontController::class, 'getNovedad'])->name('novedad');
+Route::get('curso', [App\Http\Controllers\FrontController::class, 'getCurso'])->name('curso');
+
 
 Route::resource('admin/servicios', ServiciosController::class );
 
