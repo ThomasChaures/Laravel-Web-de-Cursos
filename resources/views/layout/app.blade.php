@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Felatho - @yield('title')</title>  
-    <!-- Incluir CSS compilado por Vite -->
+    <!-- CSS compilado por Vite -->
     @vite('resources/css/app.css')
     </head>
   <body>

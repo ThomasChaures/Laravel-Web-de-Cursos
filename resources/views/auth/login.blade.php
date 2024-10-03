@@ -4,7 +4,6 @@
 
     @section('content')
 
-
     <h1>Iniciar Sesion</h1>
 
     <form action="{{ route('auth.authenticate')}}" method="post">
