@@ -15,5 +15,8 @@ class Servicio extends Model
         'descripcion',
         'img',
         'precio',
+        'clases',
+        'estudiantes',
+        'categoria'
     ];
 }

@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('nombre', 45);
             $table->text('descripcion'); // Cambiar a text
+            $table->integer('clases');
+            $table->integer('estudiantes');
+            $table->string('categoria');
             $table->string('img');
             $table->integer('precio');
             $table->timestamps();

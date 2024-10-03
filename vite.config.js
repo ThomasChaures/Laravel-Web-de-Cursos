@@ -8,4 +8,9 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    publicDir: 'public', // Asegura que Vite use el directorio público correcto
+    build: {
+        outDir: 'public/build',
+        manifest: true,
+    },
 });
