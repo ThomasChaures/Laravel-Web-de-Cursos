@@ -29,8 +29,13 @@
             <td class="py-2 px-4 text-gray-700"> <img src="{{ asset('uploads/' . $servicio->img) }}" alt="{{ $servicio->nombre }}"></td>
             <td class="py-2 px-4 text-gray-700">${{number_format($servicio->precio, 2)}}</td>
             <td class="py-2 px-4">
-              <button class="text-blue-500 hover:underline">Editar</button>
-              <button class="text-red-500 hover:underline">Eliminar</button>
+            <a href="{{route('servicios.show', $servicio->id)}}" class="bg-green-500 hover:underline rounded h-[30px] w-[100px] flex items-center justify-center mt-3 text-white">Ver</a>
+            <a href="{{route('servicios.edit', $servicio->id)}}" class="bg-blue-500 hover:underline rounded h-[30px] w-[100px] flex items-center justify-center mt-3 text-white">Editar</a>
+            <form action="{{route('servicios.destroy', $servicio->id)}}" method="post">
+                @csrf
+                @method('DELETE')
+                <button class="bg-red-500 hover:underline rounded h-[30px] w-[100px] flex items-center justify-center mt-3 text-white" type="submit">Eliminar</button>
+            </form>
             </td>
           </tr>
         @endforeach

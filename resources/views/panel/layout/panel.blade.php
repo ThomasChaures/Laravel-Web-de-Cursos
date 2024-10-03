@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Administrador - @yield('title')</title>
+    <title>Panel - @yield('title')</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
@@ -29,6 +29,21 @@
 
     </header>
     <main class="container mx-auto p-5">
+    @if (session('feedback.messages'))
+      <div class="flex w-full bg-green-500 text-white p-5">
+          @foreach (session('feedback.messages') as $message)
+              <p>{{ $message }}</p>
+          @endforeach
+      </div>
+    @endif
+
+    @if (session('feedback.errors'))
+      <div class="flex w-full bg-red-500 text-white p-5">
+          @foreach (session('feedback.errors') as $error)
+              <p>{{ $error }}</p>
+          @endforeach
+      </div>
+    @endif
         @yield('content')
     </main>
 </body>
