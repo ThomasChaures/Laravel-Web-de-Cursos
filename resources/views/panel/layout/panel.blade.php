@@ -15,8 +15,9 @@
                 </div>
                 <nav class="flex  items-center">
                     <ul class="flex items-center gap-5 list-none text-lg">
-                        <li><a href="{{route('servicios.index')}}">Inicio</a></li>
-                        <li><a href="">Servicios</a></li>
+                        <li><a href="{{route('admin-index')}}">Inicio</a></li>
+                        <li><a href="{{route('servicios.index')}}">Cursos</a></li>
+                        <li><a href="">Novedades</a></li>
                         <li><a href="">Usuarios</a></li>
                     </ul>
                 </nav>

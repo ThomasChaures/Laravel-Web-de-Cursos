@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ServiciosController;
 use Illuminate\Support\Facades\Route;
 
@@ -11,7 +12,7 @@ Route::get('novedades', [App\Http\Controllers\FrontController::class, 'novedades
 Route::get('novedad', [App\Http\Controllers\FrontController::class, 'getNovedad'])->name('novedad');
 Route::get('curso', [App\Http\Controllers\FrontController::class, 'getCurso'])->name('curso');
 
-
+Route::get('admin/', [App\Http\Controllers\AdminController::class, 'index'])->name('admin-index');
 Route::resource('admin/servicios', ServiciosController::class );
 
 Route::get('iniciar-sesion', [App\Http\Controllers\AuthController::class, 'login'])->name('auth.login');
