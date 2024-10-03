@@ -31,16 +31,16 @@ class AuthController extends Controller
 
     public function authenticate(Request $request)
     {
-        // Validar los datos de entrada
+      
         $request->validate([
             'email' => 'required|email',
             'password' => 'required'
         ]);
 
-        // Obtener las credenciales
+       
         $credentials = $request->only('email', 'password');
 
-        // Intentar autenticar
+      
         if (Auth::attempt($credentials)) {
             return redirect()
                 ->intended('home')

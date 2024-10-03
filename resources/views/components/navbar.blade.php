@@ -20,7 +20,7 @@
             </a>
         </div>
 
-        <!-- Botón de Login o Logout -->
+        <!-- Botones de Login o Logout / Register -->
         <div>
             @auth
                 <!-- Si el usuario está autenticado, muestra el botón de cerrar sesión -->
@@ -31,9 +31,12 @@
                     </button>
                 </form>
             @else
-                <!-- Si el usuario no está autenticado, muestra el botón de iniciar sesión -->
+                <!-- Si el usuario no está autenticado, muestra los botones de Login y Register -->
                 <a href="{{ route('auth.login') }}" class="border-2 border-blue-600 text-blue-600 px-4 py-2 rounded-full hover:border-green-500 hover:text-green-500">
                     Login
+                </a>
+                <a href="{{ route('auth.register') }}" class="ml-4 border-2 border-blue-600 text-blue-600 px-4 py-2 rounded-full hover:border-green-500 hover:text-green-500">
+                    Registrarse
                 </a>
             @endauth
         </div>

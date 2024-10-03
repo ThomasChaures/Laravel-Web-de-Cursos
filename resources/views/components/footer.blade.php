@@ -1,4 +1,4 @@
-<footer class="bg-gradient-to-r from-teal-400 to-blue-300 py-12">
+<footer class="bg-gradient-to-r from-blue-300 to-green-300 py-12">
   <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-white">
     
     <!-- Sección de la marca -->
