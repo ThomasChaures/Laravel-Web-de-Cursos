@@ -1,9 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-      <!-- title contenido dinamico -->
     <title>Proyecto - @yield('title')</title>  
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
@@ -20,7 +19,6 @@
           <a class="nav-link" href="{{ route('home')}}">Home</a>
         </li>
         @auth
-    <!-- Mostrar botón de cerrar sesión si el usuario está autenticado -->
     <li class="nav-item">
         <form action="{{ url('/cerrar-sesion') }}" method="post">
             @csrf
@@ -30,7 +28,6 @@
         </form>
     </li>
 @else
-    <!-- Mostrar enlace de iniciar sesión si el usuario no está autenticado -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('auth.login') }}">Iniciar Sesión</a>
     </li>
@@ -61,8 +58,6 @@
           @endforeach
       </div>
     @endif
-
-    <!-- contenido dinamico -->
     @yield('content')
   </main>
 

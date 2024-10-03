@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ServiciosController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::resource('admin/servicios', ServiciosController::class );
 
 Route::get('iniciar-sesion', [App\Http\Controllers\AuthController::class, 'login'])->name('auth.login');
 

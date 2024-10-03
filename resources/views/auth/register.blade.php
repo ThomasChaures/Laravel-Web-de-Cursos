@@ -10,7 +10,6 @@
     <form action="{{ route('auth.newAccount')}}" method="post">
     @csrf
 
-<!-- Mostrar los errores de validación -->
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
