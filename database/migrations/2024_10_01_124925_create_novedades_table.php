@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('titulo', 45);
             $table->text('contenido');
             $table->string('img');
+
+            // Agrego la clave foranea para el usuario
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

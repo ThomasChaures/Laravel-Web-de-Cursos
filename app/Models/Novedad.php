@@ -13,5 +13,12 @@ class Novedad extends Model
         'titulo',
         'contenido',
         'img',
+        'user_id' // Agrego la clave foranea que conecta cada novedad con un usuario
     ];
+
+    public function user()
+    {
+
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
