@@ -22,7 +22,7 @@ class NovedadesController extends Controller
      */
     public function create()
     {
-        
+        return view('panel.novedades.create');
     }
 
     /**
@@ -30,7 +30,28 @@ class NovedadesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $request->validate([
+                'titulo' => 'required|max:45|min:10',
+                'contenido' => 'required|min:10',
+                'img' => 'required|image|max:2048'
+            ]); 
+
+            if($request->hasFile('img')){
+                $imgNombre = time() . '.' . $request->img->extension();
+                $request->img->move(public_path('uploads'), $imgNombre);
+
+                Novedad::create([
+                    'titulo' => $request->titulo,
+                    'contenido' => $request->contenido,
+                    'img' => $imgNombre
+                ]);
+
+                return back()->with('feedback', ['messages' => ['Novedad agregada con éxito']]);
+            }
+        } catch (Exception $e){
+            return back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -47,7 +68,8 @@ class NovedadesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+       $novedad = Novedad::find($id);
+       return view('panel.novedades.edit', compact('novedad'));
     }
 
     /**
@@ -55,7 +77,35 @@ class NovedadesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try{
+            $novedad = Novedad::find($id);
+
+            $request->validate([
+                'titulo' => 'required|max:45|min:10',
+                'contenido' => 'required|min:10',
+                'img' => 'required|image|max:2048'
+            ]); 
+
+            if($request->hasFile('img')){
+                $imgNombre = time() . '.' . $request->img->extension();
+                $request->img->move(public_path('uploads'), $imgNombre);
+
+                $novedad->update([
+                    'titulo' => $request->titulo,
+                    'contenido' => $request->contenido,
+                    'img' => $imgNombre
+                ]);
+
+                return back()->with('feedback', ['messages' => ['Novedad editada con éxito']]);
+            }else{
+                $novedad->update([
+                    'titulo' => $request->titulo,
+                    'contenido' => $request->contenido,
+                ]);
+            }
+        } catch (Exception $e){
+            return back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -63,6 +113,8 @@ class NovedadesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+      $novedad = Novedad::find($id);
+      $novedad->delete();
+      return redirect()->route('novedades.index');
     }
 }

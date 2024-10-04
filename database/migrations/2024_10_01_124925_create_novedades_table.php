@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('titulo', 45);
             $table->text('contenido');
-            $table->string('img', 45);
+            $table->string('img');
             $table->timestamps();
         });
     }

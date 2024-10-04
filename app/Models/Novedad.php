@@ -9,4 +9,9 @@ class Novedad extends Model
 {
     use HasFactory;
     protected $table = 'novedades';
+    protected $fillable = [
+        'titulo',
+        'contenido',
+        'img',
+    ];
 }

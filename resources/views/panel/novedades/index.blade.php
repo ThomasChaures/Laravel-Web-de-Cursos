@@ -1,3 +1,2 @@
-<div>
-    <!-- Always remember that you are absolutely unique. Just like everyone else. - Margaret Mead -->
-</div>
+@extends('panel.layout.panel')
+@section('title', 'Listado de Novedades')

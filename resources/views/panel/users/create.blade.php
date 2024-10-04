@@ -1,3 +1,2 @@
-<div>
-    <!-- Life is available only in the present moment. - Thich Nhat Hanh -->
-</div>
+@extends('panel.layout.panel')
+@section('title', 'Agregar Usuario')
