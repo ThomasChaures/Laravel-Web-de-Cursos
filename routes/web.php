@@ -4,6 +4,7 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ServiciosController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\FrontController::class, 'index'])->name('home');
@@ -14,6 +15,7 @@ Route::get('curso', [App\Http\Controllers\FrontController::class, 'getCurso'])->
 
 Route::get('admin/', [App\Http\Controllers\AdminController::class, 'index'])->name('admin-index');
 Route::resource('admin/servicios', ServiciosController::class );
+Route::resource('admin/usuarios', UsersController::class );
 
 Route::get('iniciar-sesion', [App\Http\Controllers\AuthController::class, 'login'])->name('auth.login');
 

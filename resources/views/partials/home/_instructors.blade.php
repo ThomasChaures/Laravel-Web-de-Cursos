@@ -23,7 +23,7 @@
 
             <!-- Imagen -->
             <div class="lg:w-1/2 mt-8 lg:mt-0 flex justify-center items-center">
-                <img src="{{ asset('build/assets/images/instructor.png') }}" alt="Imagen de instructor">
+                <img src="{{ asset('img/instructor.png') }}" alt="Imagen de instructor">
             </div>
         </div>
     </section>

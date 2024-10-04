@@ -9,7 +9,7 @@
          
                 @foreach($servicios as $servicio)
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
-                    <img src="{{ asset('build/assets/images/course.jpg') }}" alt="Diseño Web" class="w-full h-40 object-cover">
+                    <img src="{{ asset('uploads/' . $servicio->img) }}" alt="Diseño Web" class="w-full h-40 object-cover">
                     <div class="p-6">
                         <span class="inline-block text-white text-sm px-3 py-1 rounded-full" style="background: linear-gradient(90deg, #3b82f6 0%, #22c55e 100%);">{{$servicio->categoria}}</span>
                         <h3 class="text-xl font-semibold mt-4">{{$servicio->nombre}}</h3>

@@ -6,16 +6,16 @@
                 
                 <!-- Logos del carrusel -->
                 <div class="flex-shrink-0 mx-4">
-                    <img src="{{ asset('build/assets/images/logo1.png') }}" alt="Logo de Globant">
+                    <img src="{{ asset('img/logo1.png') }}" alt="Logo de Globant">
                 </div>
                 <div class="flex-shrink-0 mx-4">
-                    <img src="{{ asset('build/assets/images/logo2.png') }}" alt="Logo de Mercado Libre">
+                    <img src="{{ asset('img/logo2.png') }}" alt="Logo de Mercado Libre">
                 </div>
                 <div class="flex-shrink-0 mx-4">
-                    <img src="{{ asset('build/assets/images/logo3.png') }}" alt="Logo de Microsoft">
+                    <img src="{{ asset('img/logo3.png') }}" alt="Logo de Microsoft">
                 </div>
                 <div class="flex-shrink-0 mx-4">
-                    <img src="{{ asset('build/assets/images/logo4.png') }}" alt="Logo de Google">
+                    <img src="{{ asset('img/logo4.png') }}" alt="Logo de Google">
                 </div>
             </div>
         </div>

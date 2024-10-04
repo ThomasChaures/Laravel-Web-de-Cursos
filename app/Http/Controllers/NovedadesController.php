@@ -1,18 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\User;
+
+use App\Models\Novedad;
+
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class NovedadesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $usuarios = User::all();
-        return view('panel.users.index', compact('usuarios'));
+        $novedades = Novedad::all();
+        return view('panel.novedades.index', compact('novedades'));
     }
 
     /**
@@ -20,7 +22,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('panel.users.create');
+        
     }
 
     /**
@@ -36,8 +38,8 @@ class UsersController extends Controller
      */
     public function show(string $id)
     {
-        $usuarios = User::find($id);
-        return view('panel.users.index', compact('usuarios'));
+        $novedades = Novedad::find($id);
+        return view('panel.novedades.show', compact('novedades'));
     }
 
     /**
