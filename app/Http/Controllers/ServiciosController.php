@@ -57,7 +57,7 @@ class ServiciosController extends Controller
     
             return back()->with('feedback', ['messages' => ['Servicio agregado con éxito']]);
     
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             
             return back()->withErrors(['error' => $e->getMessage()]);
         }

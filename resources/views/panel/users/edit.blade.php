@@ -1,3 +1,2 @@
-<div>
-    <!-- An unexamined life is not worth living. - Socrates -->
-</div>
+@extends('panel.layout.panel')
+@section('title', 'Editar Usuario')
