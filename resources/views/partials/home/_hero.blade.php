@@ -11,7 +11,7 @@
 
             <!-- Imagen del Hero -->
             <div class="w-full md:w-1/2 flex justify-center mt-8 md:mt-0">
-                <img src="{{ asset('build/assets/images/home.png') }}" alt="Estudiante + Estadísticas de los cursos" class="max-w-[80%] h-auto object-contain">
+                <img src="{{ asset('img/home.png') }}" alt="Estudiante + Estadísticas de los cursos" class="max-w-[80%] h-auto object-contain">
             </div>
         </div>
     </section>
