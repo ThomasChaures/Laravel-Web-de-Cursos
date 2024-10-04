@@ -19,4 +19,11 @@ class Servicio extends Model
         'estudiantes',
         'categoria'
     ];
+
+    // Un servicio puede tener varios usuarios
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'usuarios_tienen_servicios', 'service_id', 'user_id');
+    }
 }

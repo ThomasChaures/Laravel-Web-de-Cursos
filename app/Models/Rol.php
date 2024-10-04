@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Rol extends Model
 {
     use HasFactory;
+
+    protected $table = 'roles';
+    protected $fillable = ['nombre'];
+
+    public function users()
+    {
+        // Especifico la clave foranea que conecta la tabla users con la tabla roles.
+        return $this->hasMany(User::class, 'role_id');
+    }
 }

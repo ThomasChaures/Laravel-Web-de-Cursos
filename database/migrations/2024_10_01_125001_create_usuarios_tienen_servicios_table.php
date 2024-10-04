@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('usuarios_tienen_servicios', function (Blueprint $table) {
             $table->id();
+            // Asigno la clave foranea para la tabla 'users'
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+
+            // Asigno la clave foranea para la tabla 'servicios'
+            $table->foreignId('service_id')->constrained('servicios')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
