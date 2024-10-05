@@ -4,49 +4,57 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ServiciosController;
+use App\Http\Controllers\NovedadesController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\AuthMiddleware;
+use App\Http\Middleware\CheckRole;
 
 
 // Web para el Usuario
 
-Route::get('/', [App\Http\Controllers\FrontController::class, 'index'])
+Route::get('/', [FrontController::class, 'index'])
         ->name('home');
-Route::get('cursos', [App\Http\Controllers\FrontController::class, 'cursos'])
+Route::get('cursos', [FrontController::class, 'cursos'])
         ->name('cursos');
-Route::get('novedades', [App\Http\Controllers\FrontController::class, 'novedades'])
+Route::get('novedades', [FrontController::class, 'novedades'])
         ->name('novedades');
-Route::get('novedad', [App\Http\Controllers\FrontController::class, 'getNovedad'])
+Route::get('novedad', [FrontController::class, 'getNovedad'])
         ->name('novedad');
-Route::get('curso', [App\Http\Controllers\FrontController::class, 'getCurso'])
+Route::get('curso', [FrontController::class, 'getCurso'])
         ->name('curso');
 
 
 // Panel de Administrador
 
-Route::get('admin', [App\Http\Controllers\AdminController::class, 'index'])
+Route::get('admin/iniciar-sesion', [AdminController::class, 'login'])
+        ->name('admin.login');
+Route::post('admin/iniciar-sesion', [AdminController::class, 'authenticate'])
+        ->name('admin.authenticate');
+Route::get('admin', [AdminController::class, 'index'])
         ->name('admin-index')
-        ->middleware('auth');
+        ->middleware(CheckRole::class);
 Route::resource('admin/servicios', ServiciosController::class )
-        ->middleware('auth');
+        ->middleware(CheckRole::class);
 Route::resource('admin/usuarios', UsersController::class )
-        ->middleware('auth');   
-
+        ->middleware(CheckRole::class);   
+        Route::resource('admin/novedades', NovedadesController::class )
+        ->middleware(CheckRole::class);  
 
 // Autenticacion de usuario
 
-Route::get('iniciar-sesion', [App\Http\Controllers\AuthController::class, 'login'])
+Route::get('iniciar-sesion', [AuthController::class, 'login'])
         ->name('auth.login');
 
-Route::get('registro', [App\Http\Controllers\AuthController::class, 'register'])
+Route::get('registro', [AuthController::class, 'register'])
         ->name('auth.register');
 
-Route::post('registro', [App\Http\Controllers\AuthController::class, 'newAccount'])
+Route::post('registro', [AuthController::class, 'newAccount'])
         ->name('auth.newAccount');
 
-Route::post('iniciar-sesion', [App\Http\Controllers\AuthController::class, 'authenticate'])
+Route::post('iniciar-sesion', [AuthController::class, 'authenticate'])
         ->name('auth.authenticate');
 
 
-Route::post('cerrar-sesion', [App\Http\Controllers\AuthController::class, 'logout'])
+Route::post('cerrar-sesion', [AuthController::class, 'logout'])
         ->name('auth.logout');

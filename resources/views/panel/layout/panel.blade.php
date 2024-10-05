@@ -15,17 +15,28 @@
                 </div>
                 <nav class="flex  items-center">
                     <ul class="flex items-center gap-5 list-none text-lg">
-                        <li><a href="{{route('admin-index')}}">Inicio</a></li>
+                        <li><a href="{{route('admin-index')}}">Inicio</a></li> 
+                        <li><a href="{{route('usuarios.index')}}">Usuarios</a></li>
                         <li><a href="{{route('servicios.index')}}">Cursos</a></li>
-                        <li><a href="">Novedades</a></li>
-                        <li><a href="">Usuarios</a></li>
+                        <li><a href="{{route('novedades.index')}}">Novedades</a></li>
                     </ul>
                 </nav>
             </div>
 
-            <div class="rounded py-2 px-5 bg-slate-300">
-                <p class="text-black">Cerrar Sesion</p>
-            </div>
+            @auth
+                <!-- Si el usuario está autenticado, muestra el botón de cerrar sesión -->
+                <form action="{{ url('/cerrar-sesion') }}" method="post">
+                    @csrf
+                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                        Cerrar sesión
+                    </button>
+                </form>
+            @else
+                <!-- Si el usuario no está autenticado, muestra los botones de Login y Register -->
+                <a href="{{ route('auth.login') }}" class="border-2 border-blue-600 text-blue-600 px-4 py-2 rounded-full hover:border-green-500 hover:text-green-500">
+                    Login
+                </a>
+            @endauth
         </div>
 
     </header>
