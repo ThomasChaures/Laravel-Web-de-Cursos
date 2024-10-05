@@ -43,7 +43,7 @@ class AuthController extends Controller
       
         if (Auth::attempt($credentials)) {
             return redirect()
-                ->intended('home')
+                ->route('home')
                 ->with('feedback', ['messages' => ['Sesión iniciada con éxito.']]);
         }
         return redirect()
@@ -63,6 +63,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role_id' => 2
         ]);
 
         Auth::login($user);
