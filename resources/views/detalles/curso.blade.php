@@ -1,3 +1,10 @@
-<div>
-    <!-- Simplicity is the essence of happiness. - Cedric Bledsoe -->
-</div>
+@extends('layout.app')
+@section('title', $servicio->nombre)
+
+@section('content')
+
+<section>
+    <!-- Armar vista de detalles -->
+</section>
+
+@endsection

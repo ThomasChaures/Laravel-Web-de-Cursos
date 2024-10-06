@@ -8,6 +8,7 @@
 <section class="pt-5 pb-5">
 <div class="mx-auto container grid grid-cols-1 md:grid-cols-3 gap-6">
          @foreach($servicios as $servicio)
+         <a href="{{ route('detalles.curso', $servicio->id) }}">
          <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
              <img src="{{ asset('uploads/' . $servicio->img) }}" alt="Diseño Web" class="w-full h-40 object-cover">
              <div class="p-6">
@@ -17,6 +18,7 @@
                  <p class="text-lg font-bold mt-4">${{$servicio->precio}}</p>
              </div>
          </div>
+         </a>
      @endforeach
  </div> 
 </section> 

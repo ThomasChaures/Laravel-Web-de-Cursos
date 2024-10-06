@@ -129,4 +129,19 @@ class ServiciosController extends Controller
         $servicios->delete();
         return redirect()->route('servicios.index')->with('feedback', ['messages' => ['Curso eliminado con éxito']]);
     }
+
+
+    public function ComprarCurso(Request $request){
+        $user = auth()->user();
+
+        $curso = Servicio::find($request->curso_id);
+
+        if($curso && $user){
+            if(!$user->servicios->contains($curso->id)){
+                $user->servicios()->attach($curso->id);
+
+                return redirect()->back()->with('feedback' , ['messages' => ['Compra realizada']]);
+            }
+        } 
+    }
 }

@@ -19,11 +19,11 @@ Route::get('cursos', [FrontController::class, 'cursos'])
         ->name('cursos');
 Route::get('novedades', [FrontController::class, 'novedades'])
         ->name('novedades');
-Route::get('novedad', [FrontController::class, 'getNovedad'])
-        ->name('novedad');
-Route::get('curso', [FrontController::class, 'getCurso'])
-        ->name('curso');
-
+Route::get('novedad/{id}', [FrontController::class, 'getNovedad'])
+        ->name('detalles.novedad');
+Route::get('curso/{id}', [FrontController::class, 'getCurso'])
+->name('detalles.curso');
+    
 
 // Panel de Administrador
 
