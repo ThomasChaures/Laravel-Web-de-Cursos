@@ -67,7 +67,7 @@ class User extends Authenticatable
     // Un usuario puede tener varias novedades.
     public function servicios()
     {
-        return $this->belongsToMany(Servicio::class, 'usuarios_tienen_servicios', 'service_id', 'user_id',);
+        return $this->belongsToMany(Servicio::class, 'usuarios_tienen_servicios', 'user_id', 'service_id');
     }
 
     public function servicio($curso){
