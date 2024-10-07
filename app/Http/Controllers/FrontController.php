@@ -29,8 +29,10 @@ class FrontController extends Controller
 }
 
 public function getCurso($id){
+   $user = auth()->user(); 
    $servicio = Servicio::find($id); // Cambiado a singular
-   return view('detalles.curso', compact('servicio')); // También aquí en singular
+   $comprado = $user->servicio($id);
+   return view('detalles.curso', compact('servicio', 'comprado')); // También aquí en singular
 }
 
 
