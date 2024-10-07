@@ -36,9 +36,16 @@ class UsersController extends Controller
      */
     public function show(string $id)
     {
-        $usuarios = User::find($id);
-        return view('panel.users.index', compact('usuarios'));
+    $compras = null; 
+    $usuario = User::find($id); 
+
+    if ($usuario && $usuario->servicios->isNotEmpty()) {
+        $compras = $usuario->servicios; 
     }
+
+    return view('panel.users.show', compact('usuario', 'compras'));
+    }  
+
 
     /**
      * Remove the specified resource from storage.

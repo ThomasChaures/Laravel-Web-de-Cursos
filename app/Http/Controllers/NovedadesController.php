@@ -31,10 +31,11 @@ class NovedadesController extends Controller
     public function store(Request $request)
     {
         try{
+            $userId = auth()->user()->id;
             $request->validate([
                 'titulo' => 'required|max:45|min:10',
                 'contenido' => 'required|min:10',
-                'img' => 'required|image|max:2048'
+                'img' => 'required|image|max:2048', 
             ]); 
 
             if($request->hasFile('img')){
@@ -44,7 +45,8 @@ class NovedadesController extends Controller
                 Novedad::create([
                     'titulo' => $request->titulo,
                     'contenido' => $request->contenido,
-                    'img' => $imgNombre
+                    'img' => $imgNombre,
+                    'user_id' => $userId
                 ]);
 
                 return back()->with('feedback', ['messages' => ['Novedad agregada con éxito']]);

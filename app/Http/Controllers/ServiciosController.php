@@ -154,7 +154,7 @@ class ServiciosController extends Controller
                 $user->servicios()->attach($curso->id);
                 // Se actualiza el numero de estudiantes.
                 $curso->update([
-                    'estudiantes' => $curso->estudiantes + 1 // Asegúrate de sumar correctamente
+                    'estudiantes' => $curso->estudiantes + 1 
                 ]);
                 return redirect()->back()->with('feedback' , ['messages' => ['Compra realizada']]);
             }else{

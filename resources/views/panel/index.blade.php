@@ -15,7 +15,7 @@
                 {{$usuarios}}
             </p>
            </div>
-            <a class="py-3 w-[200px] mt-4 px-5 bg-cyan-950 text-white rounded" href="{{route('servicios.index')}}">Ver listado</a>
+            <a class="py-3 w-[200px] mt-4 px-5 bg-cyan-950 text-white rounded" href="{{route('usuarios.index')}}">Ver listado</a>
         </div>
         <div class="flex flex-col items-center justify-center text-center">
            <div class="space-y-4 p-6 bg-white shadow-lg rounded-lg">
@@ -33,7 +33,7 @@
                 {{$novedades}}
             </p>
            </div>
-            <a class="py-3 w-[200px] mt-4 px-5 bg-cyan-950 text-white rounded" href="{{route('servicios.index')}}">Ver listado</a>
+            <a class="py-3 w-[200px] mt-4 px-5 bg-cyan-950 text-white rounded" href="{{ route('novedades.index') }}">Ver listado</a>
         </div>
     </div>
 </section>

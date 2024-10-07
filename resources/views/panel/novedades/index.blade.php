@@ -26,9 +26,8 @@
             <td class="py-2 px-4 text-gray-700">{{$novedad->id}}</td>
             <td class="py-2 px-4 text-gray-700">{{$novedad->user_id}}</td>
             <td class="py-2 px-4 text-gray-700">{{$novedad->titulo}}</td>
-            <td class="py-2 px-4 text-gray-700">{{$novedad->contenido}}</td>
+            <td class="py-2 px-4 max-w-[600px] break-all text-gray-700">{{$novedad->contenido}}</td>
             <td class="py-2 px-4 text-gray-700"> <img src="{{ asset('uploads/' . $novedad->img) }}" alt="{{ $novedad->nombre }}"></td>
-            <td class="py-2 px-4 text-gray-700">${{number_format($novedad->precio, 2)}}</td>
             <td class="py-2 px-4">
             <a href="{{route('servicios.show', $novedad->id)}}" class="bg-green-500 hover:underline rounded h-[30px] w-[100px] flex items-center justify-center mt-3 text-white">Ver</a>
             <a href="{{route('servicios.edit', $novedad->id)}}" class="bg-blue-500 hover:underline rounded h-[30px] w-[100px] flex items-center justify-center mt-3 text-white">Editar</a>
