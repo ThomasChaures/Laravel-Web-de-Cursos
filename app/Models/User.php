@@ -69,4 +69,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Servicio::class, 'usuarios_tienen_servicios', 'service_id', 'user_id',);
     }
+
+    public function servicio($curso){
+        return $this->servicios()->where('servicios.id', $curso)->exists();
+    }
 }

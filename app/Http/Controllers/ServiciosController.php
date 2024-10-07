@@ -129,4 +129,37 @@ class ServiciosController extends Controller
         $servicios->delete();
         return redirect()->route('servicios.index')->with('feedback', ['messages' => ['Curso eliminado con éxito']]);
     }
+
+
+    /**
+     * @param servicio_id
+     */
+    public function ComprarCurso(Request $request){
+        // Se valida que el curos sea un numero, exista y que se haya enviado un dato.
+        $request->validate([
+            'curso_id' => 'required|integer|exists:servicios,id',
+        ]);
+
+        // Se toma al usuario autenticado.
+        $user = auth()->user();
+
+        // Se toma el id del curso ingresado.
+        $curso = Servicio::find($request->curso_id);
+
+        // Si existe el curso y el usuario.
+        if($curso && $user){
+            // Si el usuario todavia no compro el curso.
+            if(!$user->servicios->contains($curso->id)){
+                // Se agrega al usuario.
+                $user->servicios()->attach($curso->id);
+                // Se actualiza el numero de estudiantes.
+                $curso->update([
+                    'estudiantes' => $curso->estudiantes + 1 // Asegúrate de sumar correctamente
+                ]);
+                return redirect()->back()->with('feedback' , ['messages' => ['Compra realizada']]);
+            }else{
+                return redirect()->back()->with('feedback' , ['errors' => ['Compra no realizada']]);
+            }
+        } 
+    }
 }

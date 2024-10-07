@@ -28,9 +28,12 @@ class FrontController extends Controller
     return view('detalles.novedad', compact('novedades'));
 }
 
-   public function getCurso($id){
-        $servicios = Servicio::find($id);
-        return view('detalles.curso', compact('servicios'));
-   }
+public function getCurso($id){
+   $user = auth()->user(); 
+   $servicio = Servicio::find($id); // Cambiado a singular
+   $comprado = $user->servicio($id);
+   return view('detalles.curso', compact('servicio', 'comprado')); // También aquí en singular
+}
+
 
 }
