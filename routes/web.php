@@ -22,8 +22,10 @@ Route::get('novedades', [FrontController::class, 'novedades'])
 Route::get('novedad/{id}', [FrontController::class, 'getNovedad'])
         ->name('detalles.novedad');
 Route::get('curso/{id}', [FrontController::class, 'getCurso'])
-->name('detalles.curso');
-Route::post('curso/{id}', [ServiciosController::class, 'ComprarCurso'])->name('comprar.curso');
+        ->name('detalles.curso');
+Route::post('curso/{id}', [ServiciosController::class, 'ComprarCurso'])
+        ->name('comprar.curso')
+        ->middleware(AuthMiddleware::class);
     
 
 // Panel de Administrador
