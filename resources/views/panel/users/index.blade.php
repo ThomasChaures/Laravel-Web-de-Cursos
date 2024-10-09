@@ -28,11 +28,6 @@
             <td class="py-2 px-4 text-gray-700">{{$usuario->role_id}}</td>
             <td class="py-2 px-4">
             <a href="{{route('usuarios.show', $usuario->id)}}" class="bg-green-500 hover:underline rounded h-[30px] w-[100px] flex items-center justify-center mt-3 text-white">Cursos</a>
-            <form action="{{route('usuarios.destroy', $usuario->id)}}" method="post">
-                @csrf
-                @method('DELETE')
-                <button class="bg-red-500 hover:underline rounded h-[30px] w-[100px] flex items-center justify-center mt-3 text-white" type="submit">Eliminar</button>
-            </form>
             </td>
           </tr>
         @endforeach

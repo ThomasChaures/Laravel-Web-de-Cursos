@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Novedad;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class NovedadesController extends Controller
@@ -61,8 +61,10 @@ class NovedadesController extends Controller
      */
     public function show(string $id)
     {
-        $novedades = Novedad::find($id);
-        return view('panel.novedades.show', compact('novedades'));
+        $novedad = Novedad::find($id);
+        $creador = User::find($novedad->user_id);
+        $creadorName = $creador->name;
+        return view('panel.novedades.show', compact('novedad', 'creadorName'));
     }
 
     /**
@@ -85,7 +87,7 @@ class NovedadesController extends Controller
             $request->validate([
                 'titulo' => 'required|max:45|min:10',
                 'contenido' => 'required|min:10',
-                'img' => 'required|image|max:2048'
+                'img' => 'image|max:2048'
             ]); 
 
             if($request->hasFile('img')){
@@ -104,6 +106,7 @@ class NovedadesController extends Controller
                     'titulo' => $request->titulo,
                     'contenido' => $request->contenido,
                 ]);
+                return back()->with('feedback', ['messages' => ['Novedad editada con éxito']]);
             }
         } catch (Exception $e){
             return back()->withErrors(['error' => $e->getMessage()]);
@@ -117,6 +120,6 @@ class NovedadesController extends Controller
     {
       $novedad = Novedad::find($id);
       $novedad->delete();
-      return redirect()->route('novedades.index');
+      return redirect()->route('novedades.index')->with('feedback', ['messages' => ['Novedad eliminada con éxito']]);
     }
 }

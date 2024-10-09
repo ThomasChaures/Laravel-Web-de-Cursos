@@ -37,7 +37,7 @@
                     </button>
                 </form>
             @else
-                <a href="{{ route('auth.login') }}" class="border-2 border-blue-600 text-blue-600 px-4 py-2 rounded-full hover:border-green-500 hover:text-green-500">
+                <a href="{{ route('auth.login') }}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                     Login
                 </a>
             @endauth
