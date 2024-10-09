@@ -18,7 +18,7 @@ class AuthMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if(!Auth::check()){
-            return redirect()->route('auth.login');
+             return redirect()->route('auth.login')->with('feedback', ['errors' => ['Debes iniciar sesión para acceder a esta sección.']] );
         }
         return $next($request);
     }
