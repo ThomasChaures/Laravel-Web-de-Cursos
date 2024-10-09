@@ -20,7 +20,10 @@ class ServicioFactory extends Factory
                 'nombre' => fake()->name(),
                 'descripcion' => fake()->paragraph(3,true),
                 'precio' => fake()->randomFloat(2, 2000, 99999),
-                'img' => $this->faker->imageUrl(640, 480, 'products', true, 'Faker')
+                'img' => $this->faker->imageUrl(640, 480, 'products', true, 'Faker'),
+                'estudiantes' => fake()->random_int(0, 300),
+                'clases' => fake()->random_int(13, 35),
+                'categoria' => Arr::random(['frontend', 'backend', 'ux_ui', 'diseno_web', 'analisis_datos'])
         ];
     }
 }
