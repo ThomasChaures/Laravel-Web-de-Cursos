@@ -26,4 +26,18 @@ class Servicio extends Model
     {
         return $this->belongsToMany(User::class, 'usuarios_tienen_servicios', 'service_id', 'user_id');
     }
+
+    public function getCategoriaAttribute()
+    {
+        $categorias = [
+            'analisis_datos' => 'Análisis de Datos',
+            'diseno_web' => 'Diseño Web',
+            'ux_ui' => 'UX/UI',
+            'frontend' => 'Front-end',
+            'backend' => 'Back-end',
+        ];
+
+    
+        return $categorias[$this->attributes['categoria']] ?? $this->attributes['categoria'];
+    }
 }
