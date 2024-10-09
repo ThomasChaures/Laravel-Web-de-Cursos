@@ -132,6 +132,8 @@ class ServiciosController extends Controller
 
 
     /**
+     * Funcion para realizar la accion simulada de compra.
+     * 
      * @param servicio_id
      */
     public function ComprarCurso(Request $request){

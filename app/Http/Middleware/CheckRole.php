@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 class CheckRole
 {
     /**
-     * Handle an incoming request.
+     * Verifica que el usuario tenga el rol de administrador. Si este no lo tiene, se le redirecciona al login.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
@@ -20,6 +20,6 @@ class CheckRole
         if($user && $user->role_id === 1){
             return $next($request);
         }
-        return redirect()->route('admin.login')->with('feedback', ['errors' => ['No tienes acceso a esta sección.']] );
+        return redirect()->route('auth.login')->with('feedback', ['errors' => ['No tienes acceso a esta sección.']] );
     }
 }

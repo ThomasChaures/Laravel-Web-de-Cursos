@@ -13,7 +13,7 @@ class Novedad extends Model
         'titulo',
         'contenido',
         'img',
-        'user_id' // Agrego la clave foranea que conecta cada novedad con un usuario
+        'user_id' 
     ];
 
     public function user()
