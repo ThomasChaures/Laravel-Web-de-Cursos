@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -11,23 +11,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        $usuarios = User::all();
+        return view('panel.users.index', compact('usuarios'));
     }
 
     /**
@@ -35,30 +20,14 @@ class UsersController extends Controller
      */
     public function show(string $id)
     {
-        //
+    $compras = null; 
+    $usuario = User::find($id); 
+
+    if ($usuario && $usuario->servicios->isNotEmpty()) {
+        $compras = $usuario->servicios; 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+    return view('panel.users.show', compact('usuario', 'compras'));
+    }  
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

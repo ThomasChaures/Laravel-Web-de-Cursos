@@ -15,11 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('nombre', 45);
             $table->text('descripcion'); // Cambiar a text
-            $table->string('img');
+            $table->integer('clases')->nullable();
+            $table->integer('estudiantes')->nullable();
+            $table->string('categoria', 50);
+            $table->string('img', 255);
             $table->integer('precio');
             $table->timestamps();
         });
-        
     }
 
     /**

@@ -5,7 +5,7 @@
             <!-- Imagen -->
             <div class="w-full lg:w-1/2 mb-8 lg:mb-0">
                 <div class="rounded-lg overflow-hidden">
-                    <img src="{{ asset('build/assets/images/benefits.jpg') }}" alt="Estudiantes" class="w-full">
+                    <img src="{{ asset('img/benefits.jpg') }}" alt="Estudiantes" class="w-full">
                 </div>
             </div>
 

@@ -12,11 +12,11 @@
             <a href="{{ route('home')}}" class="text-lg font-semibold text-blue-600 hover:text-blue-800">
                 Inicio
             </a>
-            <a href="#" class="text-lg font-semibold hover:text-blue-800">
+            <a href="{{ route('cursos')}}" class="text-lg font-semibold hover:text-blue-800">
                 Cursos
             </a>
-            <a href="#" class="text-lg font-semibold hover:text-blue-800">
-                Contacto
+            <a href="{{ route('novedades')}}" class="text-lg font-semibold hover:text-blue-800">
+                Novedades
             </a>
         </div>
 

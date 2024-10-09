@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 45);
+            $table->string('nombre', 20)->unique(); // --> Cambio el valor a 20 y le agrego el valor unique.
             $table->timestamps();
         });
     }
