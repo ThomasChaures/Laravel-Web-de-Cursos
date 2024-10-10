@@ -20,8 +20,13 @@
         </div>
 
         <!-- Botones de Login o Logout / Register -->
-        <div>
+        <div class="flex gap-2">
             @auth
+                @if(auth()->user()->role_id === 1)
+                <a href="{{ route('admin-index') }}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                    Ir al panel
+                </a>
+                @endif
                 <!-- Si el usuario está autenticado, muestra el botón de cerrar sesión -->
                 <form action="{{ url('/cerrar-sesion') }}" method="post">
                     @csrf

@@ -21,34 +21,59 @@ class AdminController extends Controller
         return view('panel.login');
     }
 
-    // public function authenticate(Request $request) {
-    //     $request->validate([
-    //         'email' => 'required|email',
-    //         'password' => 'required'
-    //     ]);
+       /**
+     * Funcion para cerrar sesion.
+     * @param request
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout(); // Se llama la funcion logut de Auth
+
+        $request->session()->invalidate();  // Se invalida la sesion
+        $request->session()->regenerateToken(); // Se regenera el token que es utilizado por ejemplo en los forms cuando se usa @csrf
+
+        return redirect() // Se redirecciona al login con un mensaje.
+            ->route('admin.login')
+            ->with('feedback', ['messages' => ['Sesión cerrada']]);
+    }
+
+    public function authenticate(Request $request) {
+        $request->validate([ // Se valida que el array de request tenga los datos pedidos.
+            'email' => 'required|email',  // requerido|que sea un eamil valido
+            'password' => 'required', // requerido
+        ], [
+            
+            // Devloucion de errores:
+            'email.required' => 'El correo electrónico es obligatorio.', // Si no puso nada
+            'email.email' => 'Debes ingresar un correo electrónico válido.', // Si el mail es invalido
+          
+            'password.required' => 'La contraseña es obligatoria.', // Si no puso nada
+        ]);
+        
     
-    //     $credentials = $request->only('email', 'password');
+        $credentials = $request->only('email', 'password');
     
-    //     $usuario = User::where('email', $request->email)->first();
+        $usuario = User::where('email', $request->email)->first();
     
-    //     if ($usuario && $usuario->role_id === 1) {
+        if ($usuario && $usuario->role_id === 1) {
        
-    //         if (Auth::attempt($credentials)) {
+            if (Auth::attempt($credentials)) {
                 
-    //             return redirect()
-    //                 ->route('admin.index')
-    //                 ->with('feedback', ['messages' => ['Sesión iniciada con éxito.']]);
-    //         } else {
-               
-    //             return back()
-    //                 ->withErrors(['email' => 'Las credenciales no coinciden.'])
-    //                 ->withInput();
-    //         }
-    //     }
+                return redirect()
+                    ->route('admin-index')
+                    ->with('feedback', ['messages' => ['Sesión iniciada con éxito.']]);
+            } 
+            
+        }else{
+            return redirect()
+            ->back()
+            ->with('feedback', ['errors' => ['Usted no cuenta con los permisos requeridos.']])
+            ->withInput();
+        }
     
-    //     return back()
-    //         ->withErrors(['email' => 'No tienes acceso.'])
-    //         ->withInput();
-    // }
+        return back()
+            ->withErrors(['email' => 'No tienes acceso.'])
+            ->withInput();
+    }
     
 }
