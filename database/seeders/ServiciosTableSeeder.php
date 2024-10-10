@@ -2,18 +2,18 @@
 
 namespace Database\Seeders;
 
-use App\Models\Rol;
+use App\Models\Servicio;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class RolesTableSeeder extends Seeder
+class ServiciosTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-
-        Rol::factory()->count(2)->create();
+        // Uso 'factory()' para crear 10 servicios.
+        Servicio::factory()->count(10)->create();
     }
 }

@@ -8,4 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class UsuarioTieneServicio extends Model
 {
     use HasFactory;
+
+    // Campos protegidos.
+    protected $table = 'usuarios_tienen_servicios';
+    protected $fillable = [
+        'user_id',
+        'service_id',
+    ];
+
+    // Relacion con el modelo de User
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    // Relacion con el modelo de Servicio
+
+    public function servicio()
+    {
+        return $this->belongsTo(Servicio::class, 'service_id');
+    }
 }
