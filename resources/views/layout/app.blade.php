@@ -6,6 +6,7 @@
     <title>Felatho - @yield('title')</title>  
     <!-- CSS compilado por Vite -->
     @vite('resources/css/app.css')
+    <script src="//unpkg.com/alpinejs" defer></script>
     </head>
   <body>
 

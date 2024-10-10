@@ -26,25 +26,52 @@ class ServiciosController extends Controller
     {
         try {
         
-            $request->validate([
-                'nombre' => 'required|max:45|min:10',
-                'descripcion' => 'required|max:255|min:10',
-                'img' => 'required|image|max:2048',
-                'precio' => 'required|numeric',
-                'clases' => 'required|numeric',
-                'categoria' => 'required'
+            $request->validate([ // se validan los campos ingresados
+                'nombre' => 'required|max:45|min:7', // requerido | maximo 45 caracteres | minimo 7 caracteres
+                'descripcion' => 'required|max:255|min:10', // requerido | maximo 255 caracteres | minimo 10 caracteres 
+                'img' => 'required|image|max:2048', // requerido | tipo img | maximo 2048kb
+                'precio' => 'required|numeric', // requerido | tipo numero
+                'clases' => 'required|numeric', // requerido | tipo numero
+                'categoria' => 'required' // requerido
+            ], [
+            
+                //Devloucion de errores: 
+                'nombre.required' => 'El nombre es obligatorio.',
+                'nombre.min' => 'El nombre debe contener al menos 7 caracteres.',
+                'nombre.max' => 'El nombre no puede tener más de 45 caracteres.',
+                
+               
+                'descripcion.required' => 'La descripción es obligatoria.',
+                'descripcion.min' => 'La descripción debe tener al menos 10 caracteres.',
+                'descripcion.max' => 'La descripción no puede exceder los 255 caracteres.',
+                
+                
+                'img.required' => 'La imagen es obligatoria.',
+                'img.image' => 'El archivo debe ser una imagen válida.',
+                'img.max' => 'La imagen no debe superar los 2048KB.',
+                
+          
+                'precio.required' => 'El precio es obligatorio.',
+                'precio.numeric' => 'El precio debe ser un valor numérico.',
+                
+                
+                'clases.required' => 'El número de clases es obligatorio.',
+                'clases.numeric' => 'El número de clases debe ser un valor numérico.',
+                
+                'categoria.required' => 'La categoría es obligatoria.',
             ]);
+            
     
 
-            if ($request->hasFile('img')) {
+            if ($request->hasFile('img')) { // si se cargo una img y se paso la validacion anterior
                 
-                $imagenNombre = time() . '.' . $request->img->extension();
+                $imagenNombre = time() . '.' . $request->img->extension(); // se cambia el nombre de la img con una fecha
     
              
-                $request->img->move(public_path('uploads'), $imagenNombre);
+                $request->img->move(public_path('uploads'), $imagenNombre); // y se guarda en la carpeta uploads
     
              
-                Servicio::create([
+                Servicio::create([ // se crea el curso
                     'nombre' => $request->nombre,
                     'descripcion' => $request->descripcion,
                     'img' => $imagenNombre,
@@ -54,8 +81,8 @@ class ServiciosController extends Controller
                     'estudiantes' => 0
                 ]);
             }
-    
-            return back()->with('feedback', ['messages' => ['Servicio agregado con éxito']]);
+                // se lo redirecciona al usuario con un mensaje de exito
+            return redirect()->route('servicios.index')->with('feedback', ['messages' => ['Servicio agregado con éxito']]);
     
         } catch (Exception $e) {
             
@@ -82,26 +109,49 @@ class ServiciosController extends Controller
 
     public function update(Request $request, string $id)
     {
-        $servicios = Servicio::find($id);
-
+        $servicios = Servicio::find($id); // se obtiene el curso a editar
         $request->validate([
-            'nombre' => 'required|max:45|min:10',
-            'descripcion' => 'required|max:255|min:10',
-            'img' => 'image|max:2048',
-            'precio' => 'required|numeric',
-            'clases' => 'required|numeric',
-            'categoria' => 'required'
+            'nombre' => 'required|max:45|min:7', // requerido | maximo 45 caracteres | minimo 7 caracteres
+            'descripcion' => 'required|max:255|min:10', // requerido | maximo 255 caracteres | minimo 10 caracteres 
+            'img' => 'image|max:2048', //  tipo img | maximo 2048kb
+            'precio' => 'required|numeric', // requerido | tipo numero
+            'clases' => 'required|numeric', // requerido | tipo numero
+            'categoria' => 'required' // requerido
+        ], [
+        
+            // Devolucion de errores:
+            'nombre.required' => 'El nombre es obligatorio.',
+            'nombre.min' => 'El nombre debe contener al menos 7 caracteres.',
+            'nombre.max' => 'El nombre no puede tener más de 45 caracteres.',
+            
+           
+            'descripcion.required' => 'La descripción es obligatoria.',
+            'descripcion.min' => 'La descripción debe tener al menos 10 caracteres.',
+            'descripcion.max' => 'La descripción no puede exceder los 255 caracteres.',
+            
+            'img.image' => 'El archivo debe ser una imagen válida.',
+            'img.max' => 'La imagen no debe superar los 2048KB.',
+            
+      
+            'precio.required' => 'El precio es obligatorio.',
+            'precio.numeric' => 'El precio debe ser un valor numérico.',
+            
+            
+            'clases.required' => 'El número de clases es obligatorio.',
+            'clases.numeric' => 'El número de clases debe ser un valor numérico.',
+            
+            'categoria.required' => 'La categoría es obligatoria.',
         ]);
 
-        if ($request->hasFile('img')) {
-         
-            $imagenNombre = time() . '.' . $request->img->extension();
+        if ($request->hasFile('img')) { // si el campo img tiene una imagen
+          
+            $imagenNombre = time() . '.' . $request->img->extension(); // se modifica el nombre agregandole una fecha
 
          
-            $request->img->move(public_path('uploads'), $imagenNombre);
+            $request->img->move(public_path('uploads'), $imagenNombre); // se guarda en la carpeta uploads
 
             
-            $servicios->update([
+            $servicios->update([  // y se actualiza el curso
                 'nombre' => $request->nombre,
                 'descripcion' => $request->descripcion,
                 'img' => $imagenNombre,
@@ -109,8 +159,8 @@ class ServiciosController extends Controller
                 'categoria' => $request->categoria,
                 'clases' => $request->clases
             ]);
-        } else {
-            $servicios->update([
+        } else { 
+            $servicios->update([ // sino tiene img, se actualiza igual sin modificar la img existente
                 'nombre' => $request->nombre,
                 'descripcion' => $request->descripcion,
                 'precio' => $request->precio,
@@ -118,7 +168,8 @@ class ServiciosController extends Controller
                 'clases' => $request->clases
             ]);
         }
-    return redirect()->route('servicios.index');
+        // se redirecciona al usuario con un mensaje de exito
+        return redirect()->route('servicios.index')->with('feedback', ['messages' => ['Servicio agregado con éxito']]);
 
     }
 

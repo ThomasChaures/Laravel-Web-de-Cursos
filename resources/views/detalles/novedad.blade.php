@@ -1,3 +1,4 @@
-<div>
-    <!-- Let all your things have their places; let each part of your business have its time. - Benjamin Franklin -->
-</div>
+@extends('layout.app')
+@section('title', $novedades->titulo)  
+
+<!-- vista detalles novedad @lauri.dev.pro -->
