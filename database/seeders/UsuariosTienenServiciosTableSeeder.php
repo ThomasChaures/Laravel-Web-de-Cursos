@@ -2,18 +2,18 @@
 
 namespace Database\Seeders;
 
-use App\Models\Rol;
+use App\Models\UsuarioTieneServicio;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class RolesTableSeeder extends Seeder
+class UsuariosTienenServiciosTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-
-        Rol::factory()->count(2)->create();
+        // Usando 'factory' para crear 10 relaciones.
+        UsuarioTieneServicio::factory()->count(10)->create();
     }
 }
