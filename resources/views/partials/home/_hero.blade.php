@@ -6,7 +6,7 @@
             <div class="w-full md:w-1/2 px-6">
                 <h1 class="text-4xl font-bold text-black leading-tight mb-4">Impulsa tu aprendizaje con cursos diseñados para el éxito</h1>
                 <p class="text-gray-600 mb-8">Descubre un enfoque innovador en la formación online con nuestra plataforma. Accede a cursos personalizados y mejora tus habilidades con métodos prácticos y dinámicos.</p>
-                <a href="#" class="bg-green-500 text-white px-6 py-3 rounded-full hover:bg-green-600">Comenzar ahora</a>
+                <a href="{{ route('auth.register') }}"  class="bg-green-500 text-white px-6 py-3 rounded-full hover:bg-green-600">Comenzar ahora</a>
             </div>
 
             <!-- Imagen del Hero -->
