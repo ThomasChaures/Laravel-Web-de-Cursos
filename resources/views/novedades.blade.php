@@ -6,7 +6,7 @@
         <div class="container mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 @include('partials.novedades._categories')
-                <div class="md:col-span-3">
+                <div class="md:col-span-12 mx-auto">
                     @include('partials.novedades._featured')
                     @include('partials.novedades._additional')
                 </div>

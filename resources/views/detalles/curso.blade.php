@@ -12,6 +12,7 @@
             
             <!-- Información básica del curso -->
             <h1 class="text-4xl font-bold mb-4">{{ $servicio->nombre }}</h1>
+            <p class="text-lg max-w-[670px] break-all text-gray-700 mb-6"><span class="font-bold">Estudiantes: </span>{{ $servicio->estudiantes }}</p>
             <p class="text-lg max-w-[670px] break-all text-gray-700 mb-6">{{ $servicio->descripcion }}</p>
             
 
