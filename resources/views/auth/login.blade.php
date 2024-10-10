@@ -9,16 +9,6 @@
         <div class="w-full md:w-1/2 p-12">
             <h2 class="text-4xl font-bold text-gray-900 mb-10">Inicia sesión en tu cuenta</h2>
 
-            <div class="flex justify-between mb-8">
-                <a href="#" class="flex items-center justify-center w-1/2 px-6 py-3 bg-gray-100 hover:bg-gray-200 rounded-md text-lg">
-                    <i class="fab fa-google mr-2 text-2xl"></i>
-                    Google
-                </a>
-                <a href="#" class="flex items-center justify-center w-1/2 ml-4 px-6 py-3 bg-gray-100 hover:bg-gray-200 rounded-md text-lg">
-                    <i class="fab fa-facebook mr-2 text-2xl"></i>
-                    Facebook
-                </a>
-            </div>
 
             <form action="{{ route('auth.authenticate') }}" method="post" class="space-y-6">
                 @csrf 

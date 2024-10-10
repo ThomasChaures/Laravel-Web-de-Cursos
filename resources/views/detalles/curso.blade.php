@@ -12,32 +12,11 @@
             
             <!-- Información básica del curso -->
             <h1 class="text-4xl font-bold mb-4">{{ $servicio->nombre }}</h1>
-            <p class="text-lg text-gray-700 mb-6">{{ $servicio->descripcion }}</p>
+            <p class="text-lg max-w-[670px] break-all text-gray-700 mb-6">{{ $servicio->descripcion }}</p>
             
-            <!-- Valoraciones del curso -->
-            <div class="flex items-center mb-4">
-                <div class="text-yellow-400">
-                    <!-- Puedes ajustar esto para generar dinámicamente las estrellas según las valoraciones -->
-                    &#9733; &#9733; &#9733; &#9733; &#9734; <!-- Ejemplo de valoraciones -->
-                </div>
-                <span class="ml-2 text-gray-600">12 valoraciones</span>
-            </div>
 
-            <!-- Descripción del curso -->
-            <h2 class="text-2xl font-semibold mb-4">Sobre este curso</h2>
-            <p class="text-gray-700 mb-6">
-                {{ $servicio->descripcion_larga }} <!-- Puedes agregar un campo de descripción larga en tu base de datos -->
-            </p>
+            
 
-            <!-- Lo que aprenderás -->
-            <h3 class="text-xl font-semibold mb-4">Lo que aprenderás</h3>
-            <ul class="list-disc ml-8 mb-6 text-gray-700">
-                <li>Aprender a producir bocetos iniciales que capturen el proceso de ideación.</li>
-                <li>Crear historias de usuario y storyboards para apoyar la experiencia del usuario.</li>
-                <li>Diseñar componentes de interfaz de usuario que sean atractivos.</li>
-                <li>Utilizar técnicas de análisis comparativo.</li>
-                <li>Realizar una revisión del diseño para probar el concepto.</li>
-            </ul>
         </div>
 
 <!-- Columna Derecha: Comprar curso -->

@@ -8,7 +8,7 @@
                 <img src="{{ $novedad->img_url }}" alt="Novedad" class="w-full h-40 object-cover rounded-lg mb-4">
                 <h3 class="text-xl font-semibold mb-2">{{ $novedad->titulo }}</h3>
                 <p class="text-gray-700">{{ Str::limit($novedad->resumen, 100) }}</p>
-                <a href="{{ route('novedades.detalle', $novedad->id) }}" class="text-blue-500 hover:underline mt-4 block">Leer más</a>
+                <a href="{{ route('detalles.novedad', $novedad->id) }}" class="text-blue-500 hover:underline mt-4 block">Leer más</a>
             </div>
             @endforeach
         </div>
