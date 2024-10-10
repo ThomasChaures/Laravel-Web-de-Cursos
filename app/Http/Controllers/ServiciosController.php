@@ -27,13 +27,39 @@ class ServiciosController extends Controller
         try {
         
             $request->validate([
-                'nombre' => 'required|max:45|min:10',
+                'nombre' => 'required|max:45|min:7',
                 'descripcion' => 'required|max:255|min:10',
                 'img' => 'required|image|max:2048',
                 'precio' => 'required|numeric',
                 'clases' => 'required|numeric',
                 'categoria' => 'required'
+            ], [
+            
+                'nombre.required' => 'El nombre es obligatorio.',
+                'nombre.min' => 'El nombre debe contener al menos 7 caracteres.',
+                'nombre.max' => 'El nombre no puede tener más de 45 caracteres.',
+                
+               
+                'descripcion.required' => 'La descripción es obligatoria.',
+                'descripcion.min' => 'La descripción debe tener al menos 10 caracteres.',
+                'descripcion.max' => 'La descripción no puede exceder los 255 caracteres.',
+                
+                
+                'img.required' => 'La imagen es obligatoria.',
+                'img.image' => 'El archivo debe ser una imagen válida.',
+                'img.max' => 'La imagen no debe superar los 2048KB.',
+                
+          
+                'precio.required' => 'El precio es obligatorio.',
+                'precio.numeric' => 'El precio debe ser un valor numérico.',
+                
+                
+                'clases.required' => 'El número de clases es obligatorio.',
+                'clases.numeric' => 'El número de clases debe ser un valor numérico.',
+                
+                'categoria.required' => 'La categoría es obligatoria.',
             ]);
+            
     
 
             if ($request->hasFile('img')) {

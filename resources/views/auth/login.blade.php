@@ -15,10 +15,16 @@
                 <div>
                     <label for="email" class="block text-gray-700 text-lg font-semibold mb-2">Email</label>
                     <input type="email" name="email" id="email" placeholder="ejemplo@correo.com" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                    @error('email')
+                    <span class="flex w-full bg-red-500 text-white p-5">{{ $message }}</span>
+                    @enderror
                 </div>  
                 <div>
                     <label for="password" class="block text-gray-700 text-lg font-semibold mb-2">Contraseña</label>
                     <input type="password" name="password" id="password" placeholder="Tu contraseña" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                    @error('titulo')
+                    <span class="flex w-full bg-red-500 text-white p-5">{{ $message }}</span>
+                    @enderror
                 </div>  
                 <div class="flex justify-between items-center">
                     <label class="inline-flex items-center">

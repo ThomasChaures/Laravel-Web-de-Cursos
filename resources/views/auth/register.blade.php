@@ -25,21 +25,33 @@
                 <div>
                     <label for="name" class="block text-gray-700 text-lg font-semibold mb-2">Nombre</label>
                     <input type="text" name="name" id="name" placeholder="Nombre completo" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                    @error('name')
+                    <span class="flex w-full bg-red-500 text-white p-5">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div>
                     <label for="email" class="block text-gray-700 text-lg font-semibold mb-2">Email</label>
                     <input type="email" name="email" id="email" placeholder="ejemplo@correo.com" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                    @error('email')
+                    <span class="flex w-full bg-red-500 text-white p-5">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div>
                     <label for="password" class="block text-gray-700 text-lg font-semibold mb-2">Contraseña</label>
                     <input type="password" name="password" id="password" placeholder="Mínimo 8 caracteres" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                    @error('password')
+                    <span class="flex w-full bg-red-500 text-white p-5">{{ $message }}</span>
+                   @enderror
                 </div>
 
                 <div>
                     <label for="password_confirmation" class="block text-gray-700 text-lg font-semibold mb-2">Confirmar Contraseña</label>
                     <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Repite la contraseña" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                    @error('password_confirmation')
+                    <span class="flex w-full bg-red-500 text-white p-5">{{ $message }}</span>
+                     @enderror
                 </div>
 
                 <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline text-lg">Registrar</button>
