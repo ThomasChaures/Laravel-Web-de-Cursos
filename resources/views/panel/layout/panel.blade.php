@@ -29,18 +29,24 @@
                 @endauth
             </div>
 
-            @auth
-                <form action="{{ url('/cerrar-sesion') }}" method="post">
+         <div class="flex flex-col gap-2">
+         <a href="{{ route('home') }}" class="bg-blue-600 text-center text-white px-4 py-2 rounded hover:bg-blue-700">
+                    Volver a la web
+            </a>
+         @auth
+                <form action="{{ route('admin-logout') }}" method="post">
                     @csrf
-                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                    <button type="submit" class="text-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                         Cerrar sesión
                     </button>
                 </form>
             @else
-                <a href="{{ route('auth.login') }}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                <a href="{{ route('auth.login') }}" class="text-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                     Login
                 </a>
             @endauth
+            
+         </div>
         </div>
     </header>
 

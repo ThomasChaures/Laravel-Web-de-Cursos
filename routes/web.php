@@ -29,6 +29,10 @@ Route::post('curso/{id}', [ServiciosController::class, 'ComprarCurso'])
     
 
 // Panel de Administrador
+Route::get('admin/iniciar-sesion', [AdminController::class, 'login'])
+        ->name('admin.login');
+Route::post('admin/iniciar-sesion', [AdminController::class, 'authenticate'])
+        ->name('admin.auth');
 Route::get('admin', [AdminController::class, 'index'])
         ->name('admin-index')
         ->middleware(CheckRole::class);
@@ -56,3 +60,6 @@ Route::post('iniciar-sesion', [AuthController::class, 'authenticate'])
 
 Route::post('cerrar-sesion', [AuthController::class, 'logout'])
         ->name('auth.logout');
+
+Route::post('admin/cerrar-sesion', [AdminController::class, 'logout'])
+->name('admin-logout');
