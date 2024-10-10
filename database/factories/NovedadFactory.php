@@ -20,7 +20,7 @@ class NovedadFactory extends Factory
         return [
             'titulo' => $this->faker->sentence(),
             'contenido' => $this->faker->paragraph(),
-            'img' => $this->faker->imageUrl(),
+            'img' => 'placeholder.jpeg',
             'user_id' => User::inRandomOrder()->first()->id,
         ];
     }

@@ -11,9 +11,9 @@ class AdminController extends Controller
 {
     public function index(){
 
-        $usuarios = User::count();
-        $novedades = Novedad::count();
-        $cursos = Servicio::count();
+        $usuarios = User::count(); // numero de usuarios que existen
+        $novedades = Novedad::count(); // numero de novedades que existen
+        $cursos = Servicio::count(); // numero de cursos que existen 
         return view('panel.index', compact('usuarios', 'cursos', 'novedades'));
     }
 
@@ -21,34 +21,34 @@ class AdminController extends Controller
         return view('panel.login');
     }
 
-    public function authenticate(Request $request) {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
+    // public function authenticate(Request $request) {
+    //     $request->validate([
+    //         'email' => 'required|email',
+    //         'password' => 'required'
+    //     ]);
     
-        $credentials = $request->only('email', 'password');
+    //     $credentials = $request->only('email', 'password');
     
-        $usuario = User::where('email', $request->email)->first();
+    //     $usuario = User::where('email', $request->email)->first();
     
-        if ($usuario && $usuario->role_id === 1) {
+    //     if ($usuario && $usuario->role_id === 1) {
        
-            if (Auth::attempt($credentials)) {
+    //         if (Auth::attempt($credentials)) {
                 
-                return redirect()
-                    ->route('admin.index')
-                    ->with('feedback', ['messages' => ['Sesión iniciada con éxito.']]);
-            } else {
+    //             return redirect()
+    //                 ->route('admin.index')
+    //                 ->with('feedback', ['messages' => ['Sesión iniciada con éxito.']]);
+    //         } else {
                
-                return back()
-                    ->withErrors(['email' => 'Las credenciales no coinciden.'])
-                    ->withInput();
-            }
-        }
+    //             return back()
+    //                 ->withErrors(['email' => 'Las credenciales no coinciden.'])
+    //                 ->withInput();
+    //         }
+    //     }
     
-        return back()
-            ->withErrors(['email' => 'No tienes acceso.'])
-            ->withInput();
-    }
+    //     return back()
+    //         ->withErrors(['email' => 'No tienes acceso.'])
+    //         ->withInput();
+    // }
     
 }

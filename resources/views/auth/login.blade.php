@@ -14,24 +14,24 @@
                 @csrf 
                 <div>
                     <label for="email" class="block text-gray-700 text-lg font-semibold mb-2">Email</label>
-                    <input type="email" name="email" id="email" placeholder="ejemplo@correo.com" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                    <input type="email" name="email" id="email" placeholder="ejemplo@correo.com" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     @error('email')
                     <span class="flex w-full bg-red-500 text-white p-5">{{ $message }}</span>
                     @enderror
                 </div>  
                 <div>
                     <label for="password" class="block text-gray-700 text-lg font-semibold mb-2">Contraseña</label>
-                    <input type="password" name="password" id="password" placeholder="Tu contraseña" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                    <input type="password" name="password" id="password" placeholder="Tu contraseña" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     @error('titulo')
                     <span class="flex w-full bg-red-500 text-white p-5">{{ $message }}</span>
                     @enderror
                 </div>  
                 <div class="flex justify-between items-center">
                     <label class="inline-flex items-center">
-                        <input type="checkbox" class="form-checkbox text-blue-500">
+                        <input type="checkbox" name="remember" id="remember" class="form-checkbox text-blue-500">
                         <span class="ml-2 text-gray-700">Recordarme</span>
                     </label>
-                    <a href="#" class="text-md text-blue-500 hover:underline">¿Olvidaste tu contraseña?</a>
+                    <!-- <a href="#" class="text-md text-blue-500 hover:underline">¿Olvidaste tu contraseña?</a> -->
                 </div>
                 <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline text-lg">Iniciar sesión</button>
             </form>

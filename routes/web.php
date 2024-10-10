@@ -29,11 +29,6 @@ Route::post('curso/{id}', [ServiciosController::class, 'ComprarCurso'])
     
 
 // Panel de Administrador
-
-Route::get('admin/iniciar-sesion', [AdminController::class, 'login'])
-        ->name('admin.login');
-Route::post('admin/iniciar-sesion', [AdminController::class, 'authenticate'])
-        ->name('admin.authenticate');
 Route::get('admin', [AdminController::class, 'index'])
         ->name('admin-index')
         ->middleware(CheckRole::class);

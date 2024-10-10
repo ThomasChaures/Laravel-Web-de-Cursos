@@ -11,9 +11,9 @@
                 <!-- Primer testimonio -->
                 <div class="bg-white rounded-lg p-6 shadow-lg">
                     <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-gray-300 rounded-full"></div>
+                        <div class="w-12 h-12 bg-blue-500 rounded-full"></div>
                         <div class="ml-4 text-left">
-                            <h3 class="font-bold">Alexa Rodríguez</h3>
+                            <h3 class="font-bold">Franco Chiappe</h3>
                             <p class="text-gray-600 text-sm">Desarrolladora Web</p>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
                 <!-- Segundo testimonio -->
                 <div class="bg-white rounded-lg p-6 shadow-lg">
                     <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-gray-300 rounded-full"></div>
+                    <div class="w-12 h-12 bg-blue-500 rounded-full"></div>
                         <div class="ml-4 text-left">
                             <h3 class="font-bold">Alexa Rodríguez</h3>
                             <p class="text-gray-600 text-sm">Python Developer</p>
@@ -35,7 +35,7 @@
                 <!-- Tercer testimonio -->
                 <div class="bg-white rounded-lg p-6 shadow-lg">
                     <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-gray-300 rounded-full"></div>
+                    <div class="w-12 h-12 bg-blue-500 rounded-full"></div>
                         <div class="ml-4 text-left">
                             <h3 class="font-bold">Emily Chen</h3>
                             <p class="text-gray-600 text-sm">Diseñadora UI/UX</p>

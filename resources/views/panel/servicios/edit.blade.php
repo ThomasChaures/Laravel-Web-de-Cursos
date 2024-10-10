@@ -4,33 +4,20 @@
 @section('content')
 <section class="p-6 bg-gray-50">
     <h1 class="font-semibold text-cyan-950 text-4xl mb-4">Editar curso</h1>
-
-    @if ($errors->any())
-    <div class="flex w-full bg-red-500 text-white p-5">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
-
-
     <div class="mt-10"> 
     <form  class="flex flex-col w-[600px] item-start justify-start" action="{{ route('servicios.update', $servicios->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
             <div class="flex items-start flex-col w-full mt-4">
                 <label class="mb-3" for="nombre">Nombre</label>
-                <input class="w-full block py-2 px-2 border rounded border-cyan-950" value="{{$servicios->nombre}}" required  type="text" id="nombre" name="nombre" />
+                <input class="w-full block py-2 px-2 border rounded border-cyan-950" value="{{$servicios->nombre}}"  type="text" id="nombre" name="nombre" />
                 @error('nombre')
                     <span class="flex w-full bg-red-500 text-white p-5">{{ $message }}</span>
                 @enderror
             </div>
             <div class="flex items-start flex-col w-full mt-4">
             <label class="mb-3" for="categoria">Categoría</label>
-                <select required class="w-full block py-2 px-2 border rounded border-cyan-950" id="categoria" name="categoria">
+                <select class="w-full block py-2 px-2 border rounded border-cyan-950" id="categoria" name="categoria">
                     <option value="analisis_datos">Análisis de Datos</option>
                     <option value="diseno_web">Diseño Web</option>
                     <option value="ux_ui">UX/UI</option>
@@ -40,7 +27,7 @@
             </div>
             <div class="flex items-start flex-col w-full mt-4">
                 <label class="mb-3" for="descripcion">Descripción</label>
-                <textarea   required class="w-full block py-2 px-2 border resize-none rounded border-cyan-950" cols="30" rows="5" name="descripcion" id="descripcion">{{$servicios->descripcion}}</textarea>
+                <textarea class="w-full block py-2 px-2 border resize-none rounded border-cyan-950" cols="30" rows="5" name="descripcion" id="descripcion">{{$servicios->descripcion}}</textarea>
                 @error('descripcion')
                     <span class="flex w-full bg-red-500 text-white p-5">{{ $message }}</span>
                 @enderror
@@ -54,14 +41,14 @@
             </div>
             <div class="flex items-start flex-col w-full mt-4">
                 <label class="mb-3" for="clases">Clases</label>
-                <input  required  class="w-full block py-2 px-2 border rounded border-cyan-950" value="{{$servicios->clases}}" type="number" id="clases" name="clases" />
+                <input  class="w-full block py-2 px-2 border rounded border-cyan-950" value="{{$servicios->clases}}" type="number" id="clases" name="clases" />
                 @error('clases')
                     <span class="flex w-full bg-red-500 text-white p-5">{{ $message }}</span>
                 @enderror
             </div>
             <div class="flex items-start flex-col w-full mt-4">
                 <label class="mb-3" for="precio">Precio</label>
-                <input  required value="{{$servicios->precio}}"  class="w-full block py-2 px-2 border rounded border-cyan-950" type="number" id="precio" name="precio" />
+                <input value="{{$servicios->precio}}"  class="w-full block py-2 px-2 border rounded border-cyan-950" type="number" id="precio" name="precio" />
                 @error('precio')
                     <span class="flex w-full bg-red-500 text-white p-5">{{ $message }}</span>
                 @enderror

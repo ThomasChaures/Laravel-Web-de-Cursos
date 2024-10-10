@@ -9,22 +9,12 @@
         <div class="w-full md:w-1/2 p-12">
             <h2 class="text-4xl font-bold text-gray-900 mb-10">Crea una nueva cuenta</h2>
 
-            @if ($errors->any())
-            <div class="bg-red-500 text-white p-4 rounded mb-6">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
-
             <form action="{{ route('auth.newAccount') }}" method="post" class="space-y-6">
                 @csrf
 
                 <div>
                     <label for="name" class="block text-gray-700 text-lg font-semibold mb-2">Nombre</label>
-                    <input type="text" name="name" id="name" placeholder="Nombre completo" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                    <input type="text" name="name" id="name" placeholder="Nombre completo" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     @error('name')
                     <span class="flex w-full bg-red-500 text-white p-5">{{ $message }}</span>
                     @enderror
@@ -32,7 +22,7 @@
 
                 <div>
                     <label for="email" class="block text-gray-700 text-lg font-semibold mb-2">Email</label>
-                    <input type="email" name="email" id="email" placeholder="ejemplo@correo.com" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                    <input type="email" name="email" id="email" placeholder="ejemplo@correo.com" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     @error('email')
                     <span class="flex w-full bg-red-500 text-white p-5">{{ $message }}</span>
                     @enderror
@@ -40,7 +30,7 @@
 
                 <div>
                     <label for="password" class="block text-gray-700 text-lg font-semibold mb-2">Contraseña</label>
-                    <input type="password" name="password" id="password" placeholder="Mínimo 8 caracteres" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                    <input type="password" name="password" id="password" placeholder="Mínimo 8 caracteres" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     @error('password')
                     <span class="flex w-full bg-red-500 text-white p-5">{{ $message }}</span>
                    @enderror
@@ -48,7 +38,7 @@
 
                 <div>
                     <label for="password_confirmation" class="block text-gray-700 text-lg font-semibold mb-2">Confirmar Contraseña</label>
-                    <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Repite la contraseña" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                    <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Repite la contraseña" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     @error('password_confirmation')
                     <span class="flex w-full bg-red-500 text-white p-5">{{ $message }}</span>
                      @enderror
