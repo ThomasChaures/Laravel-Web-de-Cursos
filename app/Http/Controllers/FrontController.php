@@ -9,7 +9,7 @@ class FrontController extends Controller
 {
    public function index(){
 
-    $servicios = Servicio::orderBy('estudiantes', 'desc')->take(3)->get(); // toma los 3 serivios con mas estudiantes
+    $servicios = Servicio::orderBy('estudiantes', 'desc')->take(3)->get(); // toma los 3 servicios con mas estudiantes
     return view('welcome', compact('servicios'));
    }
 
@@ -19,7 +19,7 @@ class FrontController extends Controller
    }
 
    public function novedades() {
-    $novedades = Novedad::orderBy('created_at', 'desc')->get(); // ordena las novedades segun cual es mas reciente
+    $novedades = Novedad::orderBy('created_at', 'desc')->get(); // ordena las novedades según cual es mas reciente
     return view('novedades', compact('novedades'));
    }
 

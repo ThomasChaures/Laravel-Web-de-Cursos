@@ -22,15 +22,15 @@ class AdminController extends Controller
     }
 
        /**
-     * Funcion para cerrar sesion.
+     * Función para cerrar sesión.
      * @param request
      */
     public function logout(Request $request)
     {
-        Auth::logout(); // Se llama la funcion logut de Auth
+        Auth::logout(); // Se llama la función logout de Auth
 
-        $request->session()->invalidate();  // Se invalida la sesion
-        $request->session()->regenerateToken(); // Se regenera el token que es utilizado por ejemplo en los forms cuando se usa @csrf
+        $request->session()->invalidate();  // Se invalida la sesión
+        $request->session()->regenerateToken(); // Se regenera el token que es utilizado por ejemplo en los forms cuando se usa @CSRF
 
         return redirect() // Se redirecciona al login con un mensaje.
             ->route('admin.login')
@@ -39,11 +39,11 @@ class AdminController extends Controller
 
     public function authenticate(Request $request) {
         $request->validate([ // Se valida que el array de request tenga los datos pedidos.
-            'email' => 'required|email',  // requerido|que sea un eamil valido
+            'email' => 'required|email',  // requerido|que sea un email valido
             'password' => 'required', // requerido
         ], [
             
-            // Devloucion de errores:
+            // Devolución de errores:
             'email.required' => 'El correo electrónico es obligatorio.', // Si no puso nada
             'email.email' => 'Debes ingresar un correo electrónico válido.', // Si el mail es invalido
           

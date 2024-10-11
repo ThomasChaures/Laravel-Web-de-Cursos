@@ -33,9 +33,9 @@ class NovedadesController extends Controller
         try{
             $userId = auth()->user()->id; // se obtiene el id del admin autenticado
             $request->validate([ // se validan los datos ingresados
-                'titulo' => 'required|max:45|min:5', // requerido | maximo 45 caracteres | minimo 5 caracteres
-                'contenido' => 'required|min:10', // requerido | minimo 10 caracteres
-                'img' => 'required|image|max:2048', // requerido | tipo img | maximo 2048kb
+                'titulo' => 'required|max:45|min:5', // requerido | máximo 45 caracteres | mínimo 5 caracteres
+                'contenido' => 'required|min:10', // requerido | mínimo 10 caracteres
+                'img' => 'required|image|max:2048', // requerido | tipo img | máximo 2048kb
             ], [ 
                 
                 // Devoluciones de error
@@ -65,7 +65,7 @@ class NovedadesController extends Controller
                     'user_id' => $userId
                 ]);
 
-                // si todo es correcto se redirecciona al usuario con un mensaje de exito
+                // si todo es correcto se redirecciona al usuario con un mensaje de éxito
                 return redirect()->route('novedades.index')->with('feedback', ['messages' => ['Novedad agregada con éxito']]);
             }
         } catch (Exception $e){
@@ -102,12 +102,12 @@ class NovedadesController extends Controller
             $novedad = Novedad::find($id); // obtengo la novedad
 
             $request->validate([ // valido si existen los campos y otras cosas
-                'titulo' => 'required|max:45|min:5', // requerido|maximo 45 caracteres | minimo 5
-                'contenido' => 'required|min:10',  // requerido| minimo 10
-                'img' => 'image|max:2048', // tipo img | maixmo 2048 kb
+                'titulo' => 'required|max:45|min:5', // requerido|máximo 45 caracteres | mínimo 5
+                'contenido' => 'required|min:10',  // requerido| mínimo 10
+                'img' => 'image|max:2048', // tipo img | máximo 2048 kb
             ], [
           
-                // Devolucion de errores:
+                // Devolución de errores:
                 'titulo.required' => 'El título es obligatorio.',
                 'titulo.min' => 'El título debe contener al menos 10 caracteres.',
                 'titulo.max' => 'El título no puede exceder los 45 caracteres.',
@@ -122,7 +122,7 @@ class NovedadesController extends Controller
             // Si el request tiene una img 
             if($request->hasFile('img')){
                 $imgNombre = time() . '.' . $request->img->extension(); // se le modifica el nombre con una fecha
-                $request->img->move(public_path('uploads'), $imgNombre); // y se la guarda en la carpeta public con el nombre en cuestion.
+                $request->img->move(public_path('uploads'), $imgNombre); // y se la guarda en la carpeta public con el nombre en cuestión.
 
                 $novedad->update([ // si se pasaron todas las validaciones se crea la novedad
                     'titulo' => $request->titulo,
@@ -130,7 +130,7 @@ class NovedadesController extends Controller
                     'img' => $imgNombre
                 ]);
 
-                return redirect()->route('novedades.index')->with('feedback', ['messages' => ['Novedad editada con éxito']]); // y se lo redirije con un mensaje de exito
+                return redirect()->route('novedades.index')->with('feedback', ['messages' => ['Novedad editada con éxito']]); // y se lo redirige con un mensaje de éxito
             }else{ // si no tiene img sucede lo mismo, no mas que no modifica la img
                 $novedad->update([
                     'titulo' => $request->titulo,

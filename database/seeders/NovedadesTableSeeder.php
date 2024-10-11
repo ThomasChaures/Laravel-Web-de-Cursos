@@ -13,7 +13,7 @@ class NovedadesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        // Uso 'factory()' para crear 10 noveddes.
+        // Uso 'factory()' para crear 10 novedades.
         Novedad::factory()->count(10)->create();
     }
 }

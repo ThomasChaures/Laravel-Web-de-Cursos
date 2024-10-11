@@ -3,7 +3,7 @@
 
 @section('content')
     <section class="container w-[30%]"> 
-        <h1 class="font-semibold text-cyan-950 text-4xl mb-4">Iniciar sesion</h1>
+        <h1 class="font-semibold text-cyan-950 text-4xl mb-4">Iniciar sesión</h1>
             <form action="{{route('admin.auth')}}" method="post">
                 @csrf
                
