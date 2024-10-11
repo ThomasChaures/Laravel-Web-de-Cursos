@@ -14,7 +14,7 @@ class Rol extends Model
 
     public function users()
     {
-        // Especifico la clave foranea que conecta la tabla users con la tabla roles.
+        // Especifico la clave foránea que conecta la tabla users con la tabla roles.
         return $this->hasMany(User::class, 'role_id');
     }
 }

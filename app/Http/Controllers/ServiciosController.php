@@ -27,15 +27,15 @@ class ServiciosController extends Controller
         try {
         
             $request->validate([ // se validan los campos ingresados
-                'nombre' => 'required|max:45|min:7', // requerido | maximo 45 caracteres | minimo 7 caracteres
-                'descripcion' => 'required|max:255|min:10', // requerido | maximo 255 caracteres | minimo 10 caracteres 
-                'img' => 'required|image|max:2048', // requerido | tipo img | maximo 2048kb
+                'nombre' => 'required|max:45|min:7', // requerido | máximo 45 caracteres | mínimo 7 caracteres
+                'descripcion' => 'required|max:255|min:10', // requerido | máximo 255 caracteres | mínimo 10 caracteres 
+                'img' => 'required|image|max:2048', // requerido | tipo img | máximo 2048kb
                 'precio' => 'required|numeric', // requerido | tipo numero
                 'clases' => 'required|numeric', // requerido | tipo numero
                 'categoria' => 'required' // requerido
             ], [
             
-                //Devloucion de errores: 
+                //Devolución de errores: 
                 'nombre.required' => 'El nombre es obligatorio.',
                 'nombre.min' => 'El nombre debe contener al menos 7 caracteres.',
                 'nombre.max' => 'El nombre no puede tener más de 45 caracteres.',
@@ -63,7 +63,7 @@ class ServiciosController extends Controller
             
     
 
-            if ($request->hasFile('img')) { // si se cargo una img y se paso la validacion anterior
+            if ($request->hasFile('img')) { // si se cargo una img y se paso la validación anterior
                 
                 $imagenNombre = time() . '.' . $request->img->extension(); // se cambia el nombre de la img con una fecha
     
@@ -81,7 +81,7 @@ class ServiciosController extends Controller
                     'estudiantes' => 0
                 ]);
             }
-                // se lo redirecciona al usuario con un mensaje de exito
+                // se lo redirecciona al usuario con un mensaje de éxito
             return redirect()->route('servicios.index')->with('feedback', ['messages' => ['Servicio agregado con éxito']]);
     
         } catch (Exception $e) {
@@ -111,15 +111,15 @@ class ServiciosController extends Controller
     {
         $servicios = Servicio::find($id); // se obtiene el curso a editar
         $request->validate([
-            'nombre' => 'required|max:45|min:7', // requerido | maximo 45 caracteres | minimo 7 caracteres
-            'descripcion' => 'required|max:255|min:10', // requerido | maximo 255 caracteres | minimo 10 caracteres 
-            'img' => 'image|max:2048', //  tipo img | maximo 2048kb
+            'nombre' => 'required|max:45|min:7', // requerido | máximo 45 caracteres | mínimo 7 caracteres
+            'descripcion' => 'required|max:255|min:10', // requerido | máximo 255 caracteres | mínimo 10 caracteres 
+            'img' => 'image|max:2048', //  tipo img | máximo 2048kb
             'precio' => 'required|numeric', // requerido | tipo numero
             'clases' => 'required|numeric', // requerido | tipo numero
             'categoria' => 'required' // requerido
         ], [
         
-            // Devolucion de errores:
+            // Devolución de errores:
             'nombre.required' => 'El nombre es obligatorio.',
             'nombre.min' => 'El nombre debe contener al menos 7 caracteres.',
             'nombre.max' => 'El nombre no puede tener más de 45 caracteres.',
@@ -145,7 +145,7 @@ class ServiciosController extends Controller
 
         if ($request->hasFile('img')) { // si el campo img tiene una imagen
           
-            $imagenNombre = time() . '.' . $request->img->extension(); // se modifica el nombre agregandole una fecha
+            $imagenNombre = time() . '.' . $request->img->extension(); // se modifica el nombre agregándole una fecha
 
          
             $request->img->move(public_path('uploads'), $imagenNombre); // se guarda en la carpeta uploads
@@ -168,7 +168,7 @@ class ServiciosController extends Controller
                 'clases' => $request->clases
             ]);
         }
-        // se redirecciona al usuario con un mensaje de exito
+        // se redirecciona al usuario con un mensaje de éxito
         return redirect()->route('servicios.index')->with('feedback', ['messages' => ['Servicio agregado con éxito']]);
 
     }
@@ -183,12 +183,12 @@ class ServiciosController extends Controller
 
 
     /**
-     * Funcion para realizar la accion simulada de compra.
+     * Función para realizar la acción simulada de compra.
      * 
      * @param servicio_id
      */
     public function ComprarCurso(Request $request){
-        // Se valida que el curos sea un numero, exista y que se haya enviado un dato.
+        // Se valida que el cursos sea un numero, exista y que se haya enviado un dato.
         $request->validate([
             'curso_id' => 'required|integer|exists:servicios,id',
         ]);
@@ -201,7 +201,7 @@ class ServiciosController extends Controller
 
         // Si existe el curso y el usuario.
         if($curso && $user){
-            // Si el usuario todavia no compro el curso.
+            // Si el usuario todavía no compro el curso.
             if(!$user->servicios->contains($curso->id)){
                 // Se agrega al usuario.
                 $user->servicios()->attach($curso->id);

@@ -16,14 +16,14 @@ class UsuarioTieneServicio extends Model
         'service_id',
     ];
 
-    // Relacion con el modelo de User
+    // Relación con el modelo de User
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    // Relacion con el modelo de Servicio
+    // Relación con el modelo de Servicio
 
     public function servicio()
     {

@@ -46,16 +46,16 @@ class User extends Authenticatable
         ];
     }
 
-    // Relacion con el modelo Rol.
+    // Relación con el modelo Rol.
     // Un usuario pertenece a un rol.
 
     public function rol()
     {
-        // Especifico la clave foranea que conecta la tabla users con la tabla roles.
+        // Especifico la clave foránea que conecta la tabla users con la tabla roles.
         return $this->belongsTo(Rol::class, 'role_id');
     }
 
-    // Relacion con el modelo Novedad.
+    // Relación con el modelo Novedad.
     // Un usuario puede tener varias novedades.
 
     public function novedad()
@@ -63,7 +63,7 @@ class User extends Authenticatable
         return $this->hasMany(Novedad::class, 'user_id');
     }
 
-    // Relacion con el modelo servicio.
+    // Relación con el modelo servicio.
     // Un usuario puede tener varias novedades.
     public function servicios()
     {

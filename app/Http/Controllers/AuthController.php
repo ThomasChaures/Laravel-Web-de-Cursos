@@ -18,15 +18,15 @@ class AuthController extends Controller
     }
 
     /**
-     * Funcion para cerrar sesion.
+     * Función para cerrar sesión.
      * @param request
      */
     public function logout(Request $request)
     {
-        Auth::logout(); // Se llama la funcion logut de Auth
+        Auth::logout(); // Se llama la función logout de Auth
 
-        $request->session()->invalidate();  // Se invalida la sesion
-        $request->session()->regenerateToken(); // Se regenera el token que es utilizado por ejemplo en los forms cuando se usa @csrf
+        $request->session()->invalidate();  // Se invalida la sesión
+        $request->session()->regenerateToken(); // Se regenera el token que es utilizado por ejemplo en los forms cuando se usa @CSRF
 
         return redirect() // Se redirecciona al login con un mensaje.
             ->route('auth.login')
@@ -35,18 +35,18 @@ class AuthController extends Controller
 
 
     /**
-     * Realiza la autenticacion del usuario.
+     * Realiza la autenticación del usuario.
      * @param credenciales
      */
     public function authenticate(Request $request)
     {
         
         $request->validate([ // Se valida que el array de request tenga los datos pedidos.
-            'email' => 'required|email',  // requerido|que sea un eamil valido
+            'email' => 'required|email',  // requerido|que sea un email valido
             'password' => 'required', // requerido
         ], [
             
-            // Devloucion de errores:
+            // Devolución de errores:
             'email.required' => 'El correo electrónico es obligatorio.', // Si no puso nada
             'email.email' => 'Debes ingresar un correo electrónico válido.', // Si el mail es invalido
           
@@ -56,14 +56,14 @@ class AuthController extends Controller
 
        
         $credentials = $request->only('email', 'password'); // Obtenemos los valores ingresados
-        $remember = $request->has('remember'); // Obtenemos si el usuario quiere mantener iniciada la sesion
+        $remember = $request->has('remember'); // Obtenemos si el usuario quiere mantener iniciada la sesión
        
-        if (Auth::attempt($credentials, $remember)) { // Realiazmos la validacion del intento de logeo
-            return redirect() // Si pasa, se lo redirecciona al home con un mensaje de exito
+        if (Auth::attempt($credentials, $remember)) { // Realizamos la validación del intento de logeo
+            return redirect() // Si pasa, se lo redirecciona al home con un mensaje de éxito
                 ->route('home')
                 ->with('feedback', ['messages' => ['Sesión iniciada con éxito.']]);
         }
-        return redirect() // Si no pasa, se lo redireccina en donde estaba y se le aclara que sus credenciales no son correctas
+        return redirect() // Si no pasa, se lo redirecciona en donde estaba y se le aclara que sus credenciales no son correctas
             ->back()
             ->withInput()
             ->with('feedback', ['errors' => ['Credenciales incorrectas']]);
@@ -71,17 +71,17 @@ class AuthController extends Controller
 
 
     /**
-     * Funcion para registrar al usuario.
+     * Función para registrar al usuario.
      * @param credenciales
      */
     public function newAccount(Request $request){
-        $request->validate([ // Se validan los campos ingresados en el formualrio
-            'name' => 'required|string|max:100',  // Requerido|Texto|maximo 100 caracteres
-            'email' => 'required|string|email|max:255|unique:users,email', // Requerido|Texto|que sea un email valido|maximo 255 caracteres| que el mail sea unico
-            'password' => 'required|string|min:8|confirmed', // Requerido|Texto|minimo 8 caracteres|que se confirme 2 veces la password
+        $request->validate([ // Se validan los campos ingresados en el formulario
+            'name' => 'required|string|max:100',  // Requerido|Texto|máximo 100 caracteres
+            'email' => 'required|string|email|max:255|unique:users,email', // Requerido|Texto|que sea un email valido|máximo 255 caracteres| que el mail sea único
+            'password' => 'required|string|min:8|confirmed', // Requerido|Texto|mínimo 8 caracteres|que se confirme 2 veces la password
         ], [
            
-            // Devluciones de error:
+            // Devoluciones de error:
             'name.required' => 'El nombre es obligatorio.',
             'name.string' => 'El nombre debe ser un texto.',
             'name.max' => 'El nombre no puede exceder los 100 caracteres.',
@@ -111,8 +111,8 @@ class AuthController extends Controller
 
         Auth::login($user); // Se mantiene logeado
 
-        return redirect() // Y se lo redirecciona al home con un mensaje de exito
+        return redirect() // Y se lo redirecciona al home con un mensaje de éxito
             ->route('home')
-            ->with('feedback', ['messages' => ['Cuenta creada con exito.']]);
+            ->with('feedback', ['messages' => ['Cuenta creada con éxito.']]);
     }
 }
