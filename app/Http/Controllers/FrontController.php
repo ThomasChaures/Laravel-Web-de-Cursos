@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 use App\Models\Servicio;
 use App\Models\Novedad;
 use Illuminate\Http\Request;
+use App\Models\Carrito;
+use App\Models\CursoEnCarrito;
+
 
 class FrontController extends Controller
 {
    public function index(){
-
     $servicios = Servicio::orderBy('estudiantes', 'desc')->take(3)->get(); // toma los 3 servicios con mas estudiantes
     return view('welcome', compact('servicios'));
    }
@@ -37,6 +39,11 @@ public function getCurso($id){
    $servicio = Servicio::find($id);
   
    return view('detalles.curso', compact('servicio', 'comprado'));
+}
+
+
+public function getCarritoCompras($id, $array){
+   
 }
 
 

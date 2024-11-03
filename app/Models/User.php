@@ -73,4 +73,9 @@ class User extends Authenticatable
     public function servicio($curso){
         return $this->servicios()->where('servicios.id', $curso)->exists();
     }
+
+    public function carrito()
+    {
+        return $this->hasOne(Carrito::class);
+    }
 }
