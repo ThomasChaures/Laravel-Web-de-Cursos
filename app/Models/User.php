@@ -65,10 +65,11 @@ class User extends Authenticatable
 
     // Relación con el modelo servicio.
     // Un usuario puede tener varias novedades.
-   public function servicios()
+    public function servicios()
     {
-        return $this->belongsToMany(Servicio::class, 'cursos_en_carrito', 'user_id', 'servicios_id');
+        return $this->belongsToMany(Servicio::class, 'usuarios_tienen_servicios', 'user_id', 'service_id');
     }
+
     public function servicio($curso){
         return $this->servicios()->where('servicios.id', $curso)->exists();
     }

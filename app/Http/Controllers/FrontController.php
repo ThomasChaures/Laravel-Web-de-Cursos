@@ -35,17 +35,27 @@ public function getCurso($id){
    $enCarrito = false;
 
    if(auth()->user()){ 
-      $user = auth()->user(); 
-      $comprado = $user->servicio($id); 
-      $carrito = $user->carrito;
-      if($carrito){
-         $enCarrito = $carrito->servicios()->where('servicios_id', 'id')->exists();
-      }
+       $user = auth()->user(); 
+       
+      
+       $comprado = $user->servicio($id); 
+       
+
+       $carrito = $user->carrito;
+       
+       if($carrito){
+          
+           $enCarrito = $carrito->servicios()->where('servicios_id', $id)->exists();
+       }
    } 
+   
+   
    $servicio = Servicio::find($id);
-  
+
+
    return view('detalles.curso', compact('servicio', 'comprado', 'enCarrito'));
 }
+
 
 
 }

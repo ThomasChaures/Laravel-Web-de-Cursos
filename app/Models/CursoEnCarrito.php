@@ -16,6 +16,7 @@ class CursoEnCarrito extends Model
         'servicios_id'
     ];
 
+
     public function carrito()
     {
         return $this->belongsTo(Carrito::class, 'carritos_id');

@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\NovedadesController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\CarritoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\CheckRole;
@@ -16,17 +17,22 @@ use App\Http\Middleware\CheckRole;
 Route::get('/', [FrontController::class, 'index'])
         ->name('home');
 Route::get('cursos', [FrontController::class, 'cursos'])
-        ->name('cursos');
+        ->name('cursos')
+        ->middleware(AuthMiddleware::class);
 Route::get('novedades', [FrontController::class, 'novedades'])
         ->name('novedades');
 Route::get('novedad/{id}', [FrontController::class, 'getNovedad'])
-        ->name('detalles.novedad');
+        ->name('detalles.novedad')
+        ->middleware(AuthMiddleware::class);
 Route::get('curso/{id}', [FrontController::class, 'getCurso'])
-        ->name('detalles.curso');
+        ->name('detalles.curso')
+        ->middleware(AuthMiddleware::class);
 Route::post('curso/{id}', [ServiciosController::class, 'AgregarCarritoCurso'])
         ->name('comprar.curso')
         ->middleware(AuthMiddleware::class);
-    
+Route::get('carrito', [CarritoController::class, 'obtenerCarrito'])
+        ->name('carrito')
+        ->middleware(AuthMiddleware::class);
 
 // Panel de Administrador
 Route::get('admin/iniciar-sesion', [AdminController::class, 'login'])

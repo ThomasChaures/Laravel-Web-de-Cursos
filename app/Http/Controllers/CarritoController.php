@@ -12,10 +12,10 @@ class CarritoController extends Controller
     public function obtenerCarrito()
     {
         $carrito = Carrito::where('user_id', auth()->id())
-        ->with('servicios.servicio')
+        ->with('servicios')
         ->first();
 
-        return view('welcome', compact('carrito'));
+        return view('carrito.carrito', compact('carrito'));
     }
 
     
