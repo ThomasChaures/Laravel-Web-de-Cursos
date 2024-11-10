@@ -21,6 +21,7 @@ class Carrito extends Model
 
     public function servicios()
     {
-        return $this->hasMany(CursoEnCarrito::class, 'carritos_id');
+        return $this->belongsToMany(Servicio::class, 'cursos_en_carrito', 'carritos_id', 'servicios_id')
+            ->withTimestamps(); 
     }
 }

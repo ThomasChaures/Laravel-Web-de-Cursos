@@ -209,9 +209,37 @@ class ServiciosController extends Controller
                 $curso->update([
                     'estudiantes' => $curso->estudiantes + 1 
                 ]);
-                return redirect()->back()->with('feedback' , ['messages' => ['Compra realizada']]);
+                return redirect()->back()->with('feedback' , ['messages' => ['Se agrego al carrito con exito!']]);
             }else{
-                return redirect()->back()->with('feedback' , ['errors' => ['Compra no realizada']]);
+                return redirect()->back()->with('feedback' , ['errors' => ['No se pudo realizar la accion.']]);
+            }
+        } 
+    }
+
+    public function AgregarCarritoCurso(Request $request){
+        // Se valida que el cursos sea un numero, exista y que se haya enviado un dato.
+        $request->validate([
+            'curso_id' => 'required|integer|exists:servicios,id',
+        ]);
+
+        // Se toma al usuario autenticado.
+        $user = auth()->user();
+
+        // Se toma el id del curso ingresado.
+        $curso = Servicio::find($request->curso_id);
+
+        // Si existe el curso y el usuario.
+        if($curso && $user){
+
+            $carrito = $user->carrito()->firstOrCreate();
+            // Si el usuario todavía no compro el curso.
+            if(!$carrito->servicios->contains($curso->id)){
+                // Se agrega al usuario.
+                $carrito->servicios()->attach($curso->id);
+                // Se actualiza el numero de estudiantes.
+                return redirect()->back()->with('feedback' , ['messages' => ['Se agrego al carrito con exito!']]);
+            }else{
+                return redirect()->back()->with('feedback' , ['errors' => ['No se pudo realizar la accion.']]);
             }
         } 
     }

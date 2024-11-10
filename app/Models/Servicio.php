@@ -27,9 +27,9 @@ class Servicio extends Model
         return $this->belongsToMany(User::class, 'usuarios_tienen_servicios', 'service_id', 'user_id');
     }
 
-    public function cursosEnCarrito()
+    public function carritos()
     {
-        return $this->hasMany(CursoEnCarrito::class, 'servicios_id');
+        return $this->belongsToMany(Carrito::class, 'cursos_en_carrito', 'servicios_id', 'carritos_id');
     }
 
     public function getCategoriaAttribute()

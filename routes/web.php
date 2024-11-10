@@ -23,7 +23,7 @@ Route::get('novedad/{id}', [FrontController::class, 'getNovedad'])
         ->name('detalles.novedad');
 Route::get('curso/{id}', [FrontController::class, 'getCurso'])
         ->name('detalles.curso');
-Route::post('curso/{id}', [ServiciosController::class, 'ComprarCurso'])
+Route::post('curso/{id}', [ServiciosController::class, 'AgregarCarritoCurso'])
         ->name('comprar.curso')
         ->middleware(AuthMiddleware::class);
     
@@ -40,7 +40,7 @@ Route::resource('admin/servicios', ServiciosController::class )
         ->middleware(CheckRole::class);
 Route::resource('admin/usuarios', UsersController::class )
         ->middleware(CheckRole::class);   
-        Route::resource('admin/novedades', NovedadesController::class )
+Route::resource('admin/novedades', NovedadesController::class )
         ->middleware(CheckRole::class);  
 
 // Autenticacion de usuario
