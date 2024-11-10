@@ -28,6 +28,9 @@
             <td class="py-2 px-4 text-gray-700">{{$usuario->role_id}}</td>
             <td class="py-2 px-4">
             <a href="{{route('usuarios.show', $usuario->id)}}" class="bg-green-500 hover:underline rounded h-[30px] w-[100px] flex items-center justify-center mt-3 text-white">Cursos</a>
+            <a href="{{route('usuarios.show', $usuario->id)}}" class="bg-green-500 hover:underline rounded h-[30px] w-[100px] flex items-center justify-center mt-3 text-white">Compras</a>
+            <a href="{{route('usuarios.show', $usuario->id)}}" class="bg-blue-500 hover:underline rounded h-[30px] w-[100px] flex items-center justify-center mt-3 text-white">Editar</a>
+            <a href="{{route('usuarios.show', $usuario->id)}}" class="bg-red-500 hover:underline rounded h-[30px] w-[100px] flex items-center justify-center mt-3 text-white">Eliminar</a>
             </td>
           </tr>
         @endforeach
