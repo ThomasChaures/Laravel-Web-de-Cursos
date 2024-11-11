@@ -10,6 +10,9 @@ use App\Http\Controllers\CarritoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\CheckRole;
+use App\Http\Controllers\OrdenController;
+use App\Http\Controllers\PagoController;
+use App\Http\Controllers\CursosEnOrdenController;
 
 
 // Web para el Usuario
@@ -30,9 +33,37 @@ Route::get('curso/{id}', [FrontController::class, 'getCurso'])
 Route::post('curso/{id}', [ServiciosController::class, 'AgregarCarritoCurso'])
         ->name('comprar.curso')
         ->middleware(AuthMiddleware::class);
+
+
+
+
+//------------------------------
+// Carrito 
 Route::get('carrito', [CarritoController::class, 'obtenerCarrito'])
         ->name('carrito')
         ->middleware(AuthMiddleware::class);
+Route::delete('carrito/{id}', [CarritoController::class, 'eliminarDelCarrito'])
+        ->name('carrito.eliminar')
+        ->middleware(AuthMiddleware::class);
+    
+Route::post('carrito', [CarritoController::class, 'pagarCarrito'])
+        ->name('carrito.comprar')
+        ->middleware(AuthMiddleware::class);
+
+Route::post('/orden', [OrdenController::class, 'store'])
+        ->name('orden.store')
+        ->middleware(AuthMiddleware::class);
+Route::post('/pago/{ordenId}', [PagoController::class, 'store'])
+        ->name('pago.store')
+        ->middleware(AuthMiddleware::class);
+Route::post('/cursos-en-orden/{ordenId}/{cursoId}', [CursosEnOrdenController::class, 'store'])
+        ->name('cursos-en-orden.store')
+        ->middleware(AuthMiddleware::class);
+//------------------------------
+
+
+
+
 
 // Panel de Administrador
 Route::get('admin/iniciar-sesion', [AdminController::class, 'login'])

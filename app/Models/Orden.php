@@ -19,7 +19,7 @@ class Orden extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function servicios(){
+    public function cursosEnOrden(){
         return $this->hasMany(CursosEnOrdenes::class, 'ordenes_id');
     }
 }
