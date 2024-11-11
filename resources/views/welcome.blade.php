@@ -10,7 +10,6 @@
    @include('partials.home._popular-courses')
    @include('partials.home._instructors')
    @include('partials.home._testimonials')
- 
 
 @vite('resources/js/app.js')
 

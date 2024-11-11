@@ -46,17 +46,23 @@
     </div>
 
     <!-- Verifica si el curso ha sido comprado -->
-    @if(!$comprado)
-    <form action="{{route('comprar.curso', $servicio->id)}}" method="post" class="mt-6">
-        @csrf
-        <input type="hidden" value="{{$servicio->id}}" name="curso_id" id="curso_id">
-        <button type="submit" class="bg-green-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-600 w-full transition-transform transform hover:scale-105">
-            Comprar ahora
-        </button>
-    </form>
+<!-- Verifica si el curso ha sido comprado -->
+@if(!$enCarrito)
+    @if(!$comprado)  
+        <form action="{{ route('comprar.curso', $servicio->id) }}" method="post" class="mt-6">
+            @csrf
+            <input type="hidden" value="{{ $servicio->id }}" name="curso_id" id="curso_id">
+            <button type="submit" class="bg-green-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-600 w-full transition-transform transform hover:scale-105">
+                Agregar al carrito
+            </button>
+        </form>
     @else
-    <p class="text-green-500 font-bold text-lg mt-6">¡Ya compraste este curso!</p>
+        <p class="text-green-500 font-bold text-lg mt-6">¡Ya compraste este curso!</p>
     @endif
+@else
+    <p class="text-gray-500 font-bold text-lg mt-6">El curso ya está en tu carrito.</p>
+@endif
+
 
 </div>
 

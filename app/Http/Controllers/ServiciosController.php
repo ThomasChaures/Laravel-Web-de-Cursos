@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Servicio;
 use Illuminate\Http\Request;
+use Http\Controllers\CarritoController;
 
 class ServiciosController extends Controller
 {
@@ -182,37 +183,42 @@ class ServiciosController extends Controller
     }
 
 
-    /**
-     * Función para realizar la acción simulada de compra.
-     * 
-     * @param servicio_id
-     */
-    public function ComprarCurso(Request $request){
-        // Se valida que el cursos sea un numero, exista y que se haya enviado un dato.
+    public function AgregarCarritoCurso(Request $request)
+    {
+        // Se valida que el curso sea un número, exista y que se haya enviado un dato.
         $request->validate([
             'curso_id' => 'required|integer|exists:servicios,id',
         ]);
-
+    
         // Se toma al usuario autenticado.
         $user = auth()->user();
-
+    
         // Se toma el id del curso ingresado.
         $curso = Servicio::find($request->curso_id);
-
+    
         // Si existe el curso y el usuario.
-        if($curso && $user){
-            // Si el usuario todavía no compro el curso.
-            if(!$user->servicios->contains($curso->id)){
-                // Se agrega al usuario.
-                $user->servicios()->attach($curso->id);
-                // Se actualiza el numero de estudiantes.
-                $curso->update([
-                    'estudiantes' => $curso->estudiantes + 1 
-                ]);
-                return redirect()->back()->with('feedback' , ['messages' => ['Compra realizada']]);
-            }else{
-                return redirect()->back()->with('feedback' , ['errors' => ['Compra no realizada']]);
+        if ($curso && $user) {
+            // Obtener o crear el carrito del usuario
+            $carrito = $user->carrito()->firstOrCreate(); // Si no tiene un carrito, crea uno
+    
+            // Verificar si el curso ya está en el carrito
+            if (!$carrito->servicios->contains($curso->id)) {
+                // Agregar el curso al carrito del usuario
+                $carrito->servicios()->attach($curso->id);
+    
+                // Opcional: Puedes actualizar el número de estudiantes si lo necesitas
+                $curso->increment('estudiantes');
+    
+                return redirect()->back()->with('feedback', ['messages' => ['El curso ha sido agregado al carrito con éxito!']]);
+            } else {
+                return redirect()->back()->with('feedback', ['errors' => ['El curso ya está en tu carrito.']]);
             }
-        } 
+        }
+    
+        return redirect()->back()->with('feedback', ['errors' => ['El curso no existe o hubo un error.']]);
     }
+    
+    
+
+    
 }
