@@ -20,12 +20,10 @@ class DatabaseSeeder extends Seeder
             ServiciosTableSeeder::class,
             UsuariosTienenServiciosTableSeeder::class,
             NovedadesTableSeeder::class,
+            CarritosSeeder::class,
+            CursosEnCarritoSeeder::class,
+            PagosSeeder::class,
         ]);
-        // User::factory(10)->create();
-        // Servicio::factory()->count(10)->create();
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        
     }
 }
