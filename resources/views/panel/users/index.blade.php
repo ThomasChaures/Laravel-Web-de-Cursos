@@ -28,7 +28,7 @@
             <td class="py-2 px-4 text-gray-700">{{$usuario->rol->nombre}}</td>
             <td class="py-2 px-4">
             <a href="{{route('usuarios.show', $usuario->id)}}" class="bg-green-500 hover:underline rounded h-[30px] w-[100px] flex items-center justify-center mt-3 text-white">Cursos</a>
-            <a href="{{route('usuarios.show', $usuario->id)}}" class="bg-green-500 hover:underline rounded h-[30px] w-[100px] flex items-center justify-center mt-3 text-white">Compras</a>
+            <a href="{{ route('admin.usuarios.ordenes.index', ['userId' => $usuario->id]) }}" class="bg-green-500 hover:underline rounded h-[30px] w-[100px] flex items-center justify-center mt-3 text-white">Compras</a>
             <a href="{{route('usuarios.edit', $usuario->id)}}"  class="bg-blue-500 hover:underline rounded h-[30px] w-[100px] flex items-center justify-center mt-3 text-white">Editar</a>
             <form action="{{route('usuarios.destroy', $usuario->id)}}" method="post">
                 @csrf

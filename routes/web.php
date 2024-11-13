@@ -45,7 +45,7 @@ Route::get('carrito', [CarritoController::class, 'obtenerCarrito'])
 Route::delete('carrito/{id}', [CarritoController::class, 'eliminarDelCarrito'])
         ->name('carrito.eliminar')
         ->middleware(AuthMiddleware::class);
-    
+
 Route::post('carrito', [CarritoController::class, 'pagarCarrito'])
         ->name('carrito.comprar')
         ->middleware(AuthMiddleware::class);
@@ -73,12 +73,19 @@ Route::post('admin/iniciar-sesion', [AdminController::class, 'authenticate'])
 Route::get('admin', [AdminController::class, 'index'])
         ->name('admin-index')
         ->middleware(CheckRole::class);
-Route::resource('admin/servicios', ServiciosController::class )
+Route::resource('admin/servicios', ServiciosController::class)
         ->middleware(CheckRole::class);
-Route::resource('admin/usuarios', UsersController::class )
-        ->middleware(CheckRole::class);   
-Route::resource('admin/novedades', NovedadesController::class )
-        ->middleware(CheckRole::class);  
+Route::resource('admin/usuarios', UsersController::class)
+        ->middleware(CheckRole::class);
+Route::get('admin/usuarios/{userId}/ordenes', [OrdenController::class, 'index'])
+        ->middleware(CheckRole::class)
+        ->name('admin.usuarios.ordenes.index');
+Route::get('admin/usuarios/{userId}/ordenes/{orderId}', [OrdenController::class, 'show'])
+        ->middleware(CheckRole::class)
+        ->name('admin.usuarios.ordenes.show');
+
+Route::resource('admin/novedades', NovedadesController::class)
+        ->middleware(CheckRole::class);
 
 // Autenticacion de usuario
 
@@ -99,4 +106,4 @@ Route::post('cerrar-sesion', [AuthController::class, 'logout'])
         ->name('auth.logout');
 
 Route::post('admin/cerrar-sesion', [AdminController::class, 'logout'])
-->name('admin-logout');
+        ->name('admin-logout');

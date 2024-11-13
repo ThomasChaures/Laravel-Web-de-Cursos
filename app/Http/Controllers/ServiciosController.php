@@ -206,8 +206,6 @@ class ServiciosController extends Controller
                 // Agregar el curso al carrito del usuario
                 $carrito->servicios()->attach($curso->id);
     
-                // Opcional: Puedes actualizar el número de estudiantes si lo necesitas
-                $curso->increment('estudiantes');
     
                 return redirect()->back()->with('feedback', ['messages' => ['El curso ha sido agregado al carrito con éxito!']]);
             } else {

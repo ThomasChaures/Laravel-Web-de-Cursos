@@ -8,6 +8,7 @@ use App\Models\Pago;
 use App\Models\CursosEnOrden;
 use App\Models\CursoEnCarrito;
 use App\Models\Servicio;
+use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\PagoController;
 use App\Http\Controllers\CursosEnOrdenController;
@@ -71,8 +72,8 @@ class CarritoController extends Controller
                     // Sumar el precio del servicio al total
                     $total += $servicio->precio;
     
-                    // Opcional: actualizar la cantidad de estudiantes del curso
-                    $servicio->increment('estudiantes');
+                    // Intentar comprar el curso si no ha sido comprado previamente
+                    $this->comprarCurso($servicio);
                 }
     
                 // Crear un pago asociado a la orden
@@ -97,10 +98,27 @@ class CarritoController extends Controller
         }
     }
     
+    public function comprarCurso($servicio)
+    {
+        // Obtener el usuario autenticado
+        $user = auth()->user();
     
+        // Si el curso existe y el usuario aún no lo compró
+        if ($servicio && !$user->servicios->contains($servicio->id)) {
+            // Agregar el curso al usuario
+            $user->servicios()->attach($servicio->id);
     
+            // Actualizar el número de estudiantes
+            $servicio->update([
+                'estudiantes' => $servicio->estudiantes + 1 
+            ]);
     
-
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     
 }
 

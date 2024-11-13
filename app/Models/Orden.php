@@ -15,11 +15,18 @@ class Orden extends Model
         'user_id'
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function cursosEnOrden(){
-        return $this->hasMany(CursosEnOrdenes::class, 'ordenes_id');
+    public function cursosEnOrden()
+    {
+        return $this->hasMany(CursosEnOrden::class, 'ordenes_id');
+    }
+
+    public function pagos()
+    {
+        return $this->hasMany(Pago::class, 'ordenes_id');
     }
 }
