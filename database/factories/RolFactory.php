@@ -17,7 +17,7 @@ class RolFactory extends Factory
     public function definition(): array
     {
         return [
-            // Genero un rol aleatorio entre (Admin o Usuario).
+            
             'nombre' => $this->faker->randomElement(['Admin', 'Usuario'])
         ];
     }

@@ -19,13 +19,15 @@ class CarritoController extends Controller
     public function obtenerCarrito()
     {
         $carrito = Carrito::where('user_id', auth()->id())
-        ->with('servicios')
-        ->first();
-
-        $total = $carrito->servicios->sum('precio');
-
-        return view('carrito.carrito', compact('carrito', 'total'));
+            ->with('servicios')
+            ->first();
+    
+        $total = $carrito ? $carrito->servicios->sum('precio') : 0;
+        $cartCount = $carrito ? $carrito->servicios->count() : 0; // Contador de productos
+    
+        return view('carrito.carrito', compact('carrito', 'total', 'cartCount'));
     }
+    
 
     public function eliminarDelCarrito(string $id){
        try{

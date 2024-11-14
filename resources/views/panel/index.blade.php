@@ -7,7 +7,7 @@
 <section>
     <h1 class="font-semibold text-cyan-950 text-4xl mb-8">Inicio</h1>
 
-    <div class="w-[60%] flex items-start justify-between gap-10">
+    <div class="w-[60%] max-lg:flex-col flex items-start justify-between gap-10">
     <div class="flex flex-col items-center justify-center text-center">
            <div class="space-y-4 p-6 bg-cyan-950 shadow-lg rounded-lg">
            <p class="text-xl font-medium text-white">Usuarios</p>
