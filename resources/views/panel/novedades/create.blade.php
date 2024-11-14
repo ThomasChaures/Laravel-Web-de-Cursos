@@ -7,7 +7,7 @@
     <h1 class="font-semibold text-cyan-950 text-4xl mb-4">Agregar novedad</h1>
 
 
-
+    <a class="rounded bg-cyan-950 text-white py-2 px-2 mt-6" href="{{route('novedades.index')}}">Volver a novedades</a>
     <div class="mt-10"> 
     <form  class="flex flex-col w-[600px] item-start justify-start" action="{{ route('novedades.store') }}" method="POST" enctype="multipart/form-data">
 

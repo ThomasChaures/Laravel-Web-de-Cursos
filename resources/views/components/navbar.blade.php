@@ -89,7 +89,7 @@
             @else
                 <!-- Botones de Login y Register -->
                 <a href="{{ route('auth.login') }}" class="{{ Route::is('auth.login') ? 'border-2 border-blue-600 bg-blue-600 text-white' : 'border-2 border-blue-600 text-blue-600' }} px-4 py-2 rounded-full hover:border-green-500 hover:text-green-500">
-                    Login
+                    Iniciar Sesión
                 </a>
                 <a href="{{ route('auth.register') }}" 
    class="ml-2 px-4 py-2 rounded-full text-white bg-gradient-to-r border-2 border-blue-600 from-blue-600 to-green-500 hover:from-green-500 hover:to-blue-600 transition duration-500 ease-in-out">

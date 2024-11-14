@@ -20,16 +20,14 @@ use App\Http\Controllers\CursosEnOrdenController;
 Route::get('/', [FrontController::class, 'index'])
         ->name('home');
 Route::get('cursos', [FrontController::class, 'cursos'])
-        ->name('cursos')
-        ->middleware(AuthMiddleware::class);
+        ->name('cursos');
 Route::get('novedades', [FrontController::class, 'novedades'])
         ->name('novedades');
 Route::get('novedad/{id}', [FrontController::class, 'getNovedad'])
         ->name('detalles.novedad')
         ->middleware(AuthMiddleware::class);
 Route::get('curso/{id}', [FrontController::class, 'getCurso'])
-        ->name('detalles.curso')
-        ->middleware(AuthMiddleware::class);
+        ->name('detalles.curso');
 Route::post('curso/{id}', [ServiciosController::class, 'AgregarCarritoCurso'])
         ->name('comprar.curso')
         ->middleware(AuthMiddleware::class);
@@ -66,10 +64,6 @@ Route::post('/cursos-en-orden/{ordenId}/{cursoId}', [CursosEnOrdenController::cl
 
 
 // Panel de Administrador
-Route::get('admin/iniciar-sesion', [AdminController::class, 'login'])
-        ->name('admin.login');
-Route::post('admin/iniciar-sesion', [AdminController::class, 'authenticate'])
-        ->name('admin.auth');
 Route::get('admin', [AdminController::class, 'index'])
         ->name('admin-index')
         ->middleware(CheckRole::class);

@@ -12,7 +12,7 @@
 
 
     <div class="overflow-x-auto mt-6">
-        <table class="min-w-full bg-white border border-gray-200">
+        <table class="max-w-[70%] containerl bg-white border border-gray-200">
             <thead class="bg-gray-100">
                 <tr>
                     <th scope="col" class="py-3 px-4 text-left text-gray-600 font-medium">Id</th>

@@ -4,6 +4,7 @@
 @section('content')
 <section class="p-6 bg-gray-50">
     <h1 class="font-semibold text-cyan-950 text-4xl mb-4">Agregar usuario</h1>
+    <a class="h-[40px] flex justify-center items-center w-[200px] mt-4 px-5 bg-cyan-950 text-white rounded" href="{{route('usuarios.index')}}">Voler al listado</a>
     <div class="mt-10"> 
     <form  class="flex flex-col w-[600px] item-start justify-start" action="{{ route('usuarios.store') }}" method="POST">
 

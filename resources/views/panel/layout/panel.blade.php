@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <header class="w-[300px] fixed h-screen bg-cyan-950">
+<body class="overflow-x-hidden"> 
+    <header class="w-[300px] max-lg:w-[200px] fixed h-screen bg-cyan-950">
         <div class="flex flex-col h-full items-start justify-between container mx-auto ml-4 p-5">
             <div class="flex flex-col items-start justify-between text-white gap-10">
                 <div class="title-head flex items-center">
@@ -50,7 +50,7 @@
         </div>
     </header>
 
-    <main class="container ml-[330px] mx-auto p-5">
+    <main class="container max-lg:ml-[200px] ml-[330px] mx-auto p-5">
         @if (session('feedback.messages'))
             <div class="flex w-full bg-green-500 text-white p-5">
                 @foreach (session('feedback.messages') as $message)
