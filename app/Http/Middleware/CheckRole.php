@@ -20,6 +20,8 @@ class CheckRole
         if($user && $user->role_id === 1){
             return $next($request);
         }
+
+        Auth::logout();
         return redirect()->route('auth.login')->with('feedback', ['errors' => ['No tienes acceso a esta sección.']] );
     }
 }

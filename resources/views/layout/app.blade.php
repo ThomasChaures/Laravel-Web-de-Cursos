@@ -17,7 +17,7 @@
 
   <main class="margen">
   @if (session('feedback.messages'))
-      <div class="mx-auto container p-5 bg-green-400 text-white alert-movil">
+      <div class="mx-auto container fixed translate-x-[-50%] top-32 left-1/2 z-40 p-5 bg-green-400 text-white alert-movil">
           @foreach (session('feedback.messages') as $message)
               <p>{{ $message }}</p>
           @endforeach
@@ -25,7 +25,7 @@
     @endif
 
     @if (session('feedback.errors'))
-      <div class="mx-auto container p-5 bg-red-400 text-white">
+      <div class="mx-auto container fixed translate-x-[-50%] top-32 left-1/2 z-40 p-5 bg-red-400 text-white">
           @foreach (session('feedback.errors') as $error)
               <p>{{ $error }}</p>
           @endforeach

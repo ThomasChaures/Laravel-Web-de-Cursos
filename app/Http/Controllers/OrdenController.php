@@ -36,7 +36,7 @@ class OrdenController extends Controller
         $orden = Orden::with(['pagos', 'cursosEnOrden'])->where('user_id', $user->id)->where('id', $ordenId)->first();
     
         if (!$orden) {
-            // Manejo de error si no se encuentra la orden
+          
             return redirect()->route('panel.ordenes.index', $userId)->with('feedback', ['errors' => ['Orden no encontrada.']]);
         }
     

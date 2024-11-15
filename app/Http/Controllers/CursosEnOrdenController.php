@@ -9,7 +9,7 @@ class CursosEnOrdenController extends Controller
 {
     public function store(Request $request, $ordenId, $cursoId)
     {
-        // Asociar el curso a la orden
+        
         CursosEnOrden::create([
             'ordenes_id' => $ordenId,
             'servicios_id' => $cursoId,

@@ -17,8 +17,21 @@ class RolFactory extends Factory
     public function definition(): array
     {
         return [
-            
-            'nombre' => $this->faker->randomElement(['Admin', 'Usuario'])
+            'nombre' => 'Usuario', 
         ];
+    }
+
+    public function admin(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'nombre' => 'Admin',
+        ]);
+    }
+
+    public function usuario(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'nombre' => 'Usuario',
+        ]);
     }
 }
