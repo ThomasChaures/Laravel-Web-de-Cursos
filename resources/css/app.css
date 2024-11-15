@@ -22,10 +22,25 @@ body {
 
 main {
     flex-grow: 1;
+    margin-top: 10%;
 }
 
 #carousel {
     display: flex;
     white-space: nowrap;
     transition: transform 0.1s linear;
+}
+
+.margin-section {
+    margin-top: -5%;
+}
+
+@media (max-width: 768px) {
+    .margin-section {
+        margin-top: 10%; ;
+    }
+
+    .alert-movil {
+        margin-top: 10%;
+    }
 }
