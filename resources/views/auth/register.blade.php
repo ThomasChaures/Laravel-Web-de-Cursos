@@ -3,7 +3,7 @@
 
 @section('content')
 
-<div class="min-h-screen flex items-center justify-center bg-gray-100">
+<div class="min-h-screen flex items-center justify-center bg-gray-100 absolute top-0 left-0 w-full h-full">
     <div class="flex bg-white rounded-lg shadow-lg w-full max-w-6xl">
         <!-- Columna izquierda: Formulario de registro -->
         <div class="w-full md:w-1/2 p-12">
