@@ -14,6 +14,10 @@ class RolesTableSeeder extends Seeder
     public function run(): void
     {
 
-        Rol::factory()->count(2)->create();
+        // Crea un rol Admin
+        Rol::factory()->admin()->create();
+
+        // Crea un rol Usuario
+        Rol::factory()->usuario()->create();
     }
 }

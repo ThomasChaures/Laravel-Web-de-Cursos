@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('cursos_en_carrito', function (Blueprint $table) {
             $table->id();
             $table->foreignId('carritos_id')->constrained()->onDelete('cascade');
-            $table->foreignId('servicios_id')->constrained();
+            $table->foreignId('servicios_id')->references('id')->on('servicios')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
             $table->unique(['carritos_id', 'servicios_id']);
         });
