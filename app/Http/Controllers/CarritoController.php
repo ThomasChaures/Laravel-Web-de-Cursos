@@ -20,40 +20,62 @@ class CarritoController extends Controller
 {
     public function obtenerCarrito()
     {
-        if (!auth()->check()) {
-            return redirect()->route('login');
+        try {
+            if (!auth()->check()) {
+                return redirect()->route('login');
+            }
+    
+            $carrito = Carrito::where('user_id', auth()->id())
+                ->with('servicios')
+                ->first();
+    
+            $total = $carrito ? $carrito->servicios->sum('precio') : 0;
+            $cartCount = $carrito ? $carrito->servicios->count() : 0;
+    
+            // Si el carrito está vacío, no se crea nada en MercadoPago
+            if (!$carrito || $cartCount === 0) {
+                return view('carrito.carrito', compact('carrito', 'total', 'cartCount'));
+            }
+    
+            MercadoPagoConfig::setAccessToken("APP_USR-3230064420901979-030212-062e5ebe836f117968441aca515976d4-2272264722");
+    
+            $cliente = new PreferenceClient();
+    
+            $items = $carrito->servicios->map(function ($servicio) {
+                return [
+                    "id" => $servicio->id,
+                    "title" => $servicio->nombre,
+                    "description" => $servicio->descripcion ?? 'Sin descripción',
+                    "quantity" => 1,
+                    "unit_price" => $servicio->precio
+                ];
+            })->toArray();
+    
+            $preferencia = $cliente->create([
+                "items" => $items,
+                "statement_descriptor" => "Felatho Cursos",
+                "external_reference" => "NRC001",
+                "back_urls" => [
+                    "success" => route('payment.success'),
+                    "failure" => route('payment.failure'),
+                    "pending" => route('payment.pending')
+                ],
+                "auto_return" => "approved"
+            ]);
+            
+    
+            return view('carrito.carrito', compact('carrito', 'total', 'cartCount', 'preferencia'));
+    
+        } catch (MPApiException $e) {
+            Log::error('Error de MercadoPago: ', [
+                'message' => $e->getMessage(),
+                'response' => $e->getResponse(),
+            ]);
+    
+            return redirect()->back()->with('error', 'Hubo un problema al procesar el pago. Revisa el log para más detalles.');
         }
-    
-        $carrito = Carrito::where('user_id', auth()->id())
-            ->with('servicios')
-            ->first();
-    
-        $total = $carrito ? $carrito->servicios->sum('precio') : 0;
-        $cartCount = $carrito ? $carrito->servicios->count() : 0;
-    
-        MercadoPagoConfig::setAccessToken(env('MERCADO_PAGO_ACCESS_TOKEN'));
-    
-        $cliente = new PreferenceClient();
-    
-        // Convertir los servicios a formato MercadoPago
-        $items = $carrito ? $carrito->servicios->map(function ($servicio) {
-            return [
-                "id" => $servicio->id,
-                "title" => $servicio->nombre,
-                "description" => $servicio->descripcion ?? 'Sin descripción',
-                "quantity" => 1, // Puedes personalizar la cantidad si es necesario
-                "unit_price" => $servicio->precio
-            ];
-        })->toArray() : [];
-    
-        $preferencia = $cliente->create([
-            "items" => $items,
-            "statement_descriptor" => "Felatho Cursos",
-            "external_reference" => "NRC001"
-        ]);
-    
-        return view('carrito.carrito', compact('carrito', 'total', 'cartCount', 'preferencia'));
     }
+    
     
 
     public function eliminarDelCarrito(string $id){

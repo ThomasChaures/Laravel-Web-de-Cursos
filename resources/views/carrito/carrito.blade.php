@@ -4,10 +4,7 @@
 
 @section('content')
 
-<?php
 
-dd($preferencia);
-?>
 
 <section class="py-12">
     <div class="container mx-auto px-4 lg:px-8 margin-section">
@@ -58,12 +55,14 @@ dd($preferencia);
                     </div>
 
                     <!-- Botón para proceder a la compra -->
-                    <form action="{{ route('carrito.comprar') }}" method="post" class="text-center">
+                    <!-- <form action="{{ route('carrito.comprar') }}" method="post" class="text-center">
                         @csrf
                         <button type="submit" class="w-full bg-green-500 text-white py-3 rounded-lg font-bold hover:bg-green-600">
                             Proceder a la compra
                         </button>
-                    </form>
+                 
+                    </form> -->
+                    <div id="wallet_container"></div>
                 </div>
             </div>
         @else
@@ -74,5 +73,27 @@ dd($preferencia);
         @endif
     </div>
 </section>
+@if(isset($carrito) && $carrito->servicios->isNotEmpty())
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+<script>
+    
+const mp = new MercadoPago("APP_USR-f12bcede-b220-4273-b88a-4e37a29c8006");
+const bricksBuilder = mp.bricks();
+
+bricksBuilder.create("wallet", "wallet_container", {
+    initialization: {
+            preferenceId: "{{ $preferencia->id ?? '' }}",
+        },
+        customization: {
+            texts: {
+                action: 'pay',
+                valueProp: 'security_safety',
+            },
+        },
+});
+
+</script>
+@endif
+
 
 @endsection

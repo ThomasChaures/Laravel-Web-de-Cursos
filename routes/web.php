@@ -13,7 +13,7 @@ use App\Http\Middleware\CheckRole;
 use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\PagoController;
 use App\Http\Controllers\CursosEnOrdenController;
-
+use App\Http\Controllers\PaymentController;
 
 // Web para el Usuario
 
@@ -59,6 +59,10 @@ Route::post('/cursos-en-orden/{ordenId}/{cursoId}', [CursosEnOrdenController::cl
         ->middleware(AuthMiddleware::class);
 //------------------------------
 
+
+Route::get('/pago/success', [PaymentController::class, 'success'])->name('payment.success');
+Route::get('/pago/fallido', [PaymentController::class, 'failure'])->name('payment.failure');
+Route::get('/pago/pendiente', [PaymentController::class, 'pending'])->name('payment.pending');
 
 
 
