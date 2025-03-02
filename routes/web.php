@@ -61,7 +61,7 @@ Route::post('/cursos-en-orden/{ordenId}/{cursoId}', [CursosEnOrdenController::cl
 
 
 Route::get('/pago/success', [PaymentController::class, 'success'])->name('payment.success');
-Route::get('/pago/fallido', [PaymentController::class, 'failure'])->name('payment.failure');
+Route::get('/pago/fallida', [PaymentController::class, 'failure'])->name('payment.failure');
 Route::get('/pago/pendiente', [PaymentController::class, 'pending'])->name('payment.pending');
 
 
