@@ -13,19 +13,46 @@ use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\PagoController;
 use App\Http\Controllers\CursosEnOrdenController;
 use Illuminate\Http\Request;
+use MercadoPago\MercadoPagoConfig;
+use MercadoPago\Client\Preference\PreferenceClient;
 
 class CarritoController extends Controller
 {
     public function obtenerCarrito()
     {
+        if (!auth()->check()) {
+            return redirect()->route('login');
+        }
+    
         $carrito = Carrito::where('user_id', auth()->id())
             ->with('servicios')
             ->first();
     
         $total = $carrito ? $carrito->servicios->sum('precio') : 0;
-        $cartCount = $carrito ? $carrito->servicios->count() : 0; // Contador de productos
+        $cartCount = $carrito ? $carrito->servicios->count() : 0;
     
-        return view('carrito.carrito', compact('carrito', 'total', 'cartCount'));
+        MercadoPagoConfig::setAccessToken(env('MERCADO_PAGO_ACCESS_TOKEN'));
+    
+        $cliente = new PreferenceClient();
+    
+        // Convertir los servicios a formato MercadoPago
+        $items = $carrito ? $carrito->servicios->map(function ($servicio) {
+            return [
+                "id" => $servicio->id,
+                "title" => $servicio->nombre,
+                "description" => $servicio->descripcion ?? 'Sin descripción',
+                "quantity" => 1, // Puedes personalizar la cantidad si es necesario
+                "unit_price" => $servicio->precio
+            ];
+        })->toArray() : [];
+    
+        $preferencia = $cliente->create([
+            "items" => $items,
+            "statement_descriptor" => "Felatho Cursos",
+            "external_reference" => "NRC001"
+        ]);
+    
+        return view('carrito.carrito', compact('carrito', 'total', 'cartCount', 'preferencia'));
     }
     
 

@@ -4,6 +4,11 @@
 
 @section('content')
 
+<?php
+
+dd($preferencia);
+?>
+
 <section class="py-12">
     <div class="container mx-auto px-4 lg:px-8 margin-section">
         <h1 class="text-4xl font-bold text-center text-gray-800 mb-16">Carrito de Compras</h1>
