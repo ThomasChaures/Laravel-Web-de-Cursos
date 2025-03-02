@@ -34,7 +34,7 @@
                     Volver a la web
             </a>
          @auth
-                <form action="{{ route('admin-logout') }}" method="post">
+                <form action="{{ route('auth.logout') }}" method="post">
                     @csrf
                     <button type="submit" class="text-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                         Cerrar sesión

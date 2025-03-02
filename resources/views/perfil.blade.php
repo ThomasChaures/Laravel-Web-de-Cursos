@@ -47,10 +47,13 @@
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="bg-indigo-600 px-6 py-4 flex justify-between items-center">
                     <h4 class="text-white font-medium text-xl">Mis Cursos</h4>
-                    <span class="bg-white text-indigo-600 px-3 py-1 rounded-full text-sm font-medium">{{ $cursos->count() }} cursos</span>
+                    <span class="bg-white text-indigo-600 px-3 py-1 rounded-full text-sm font-medium">
+    {{ $cursos ? $cursos->count() : 0 }} cursos
+</span>
+
                 </div>
                 <div class="p-6">
-                    @if($cursos->count() > 0)
+                    @if($cursos)
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             @foreach($cursos as $curso)
                                 <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">

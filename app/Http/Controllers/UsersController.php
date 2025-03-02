@@ -94,7 +94,7 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         try {
             $usuario = User::find($id);
@@ -103,7 +103,7 @@ class UsersController extends Controller
                 'name' => 'required|string|max:100',
                 'email' => 'required|string|email|max:255|unique:users,email,' . $usuario->id,
                 'role_id' => 'required',
-                'password_new' => 'string|min:8|confirmed'
+                'password' => 'nullable|string|min:8|confirmed'
             ], [
                 'name.required' => 'El nombre es obligatorio.',
                 'name.string' => 'El nombre debe ser un texto.',
@@ -116,13 +116,22 @@ class UsersController extends Controller
                 'role_id.required' => 'El rol es obligatorio.',
             ]);
 
-            $usuario->update([
-                'name' => $request->name,
-                'email' => $request->email,
-                'role_id' => $request->role_id
-            ]);
+            if($request->password){
+                $usuario->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'role_id' => $request->role_id,
+                    'password' => $request->password
+                ]);
+               }else{
+                $usuario->update([
+                    'name' => $request->name,
+                    'role_id' => $request->role_id,
+                    'email' => $request->email,
+                ]);
+            }
 
-            return redirect()->route('perfil')->with('feedback', ['messages' => ['Usuario actualizado con éxito']]);
+            return redirect()->route('usuarios.index')->with('feedback', ['messages' => ['Usuario actualizado con éxito']]);
 
         } catch (Exception $e) {
             return back()->withErrors(['error' => $e->getMessage()]);
