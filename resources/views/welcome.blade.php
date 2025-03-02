@@ -12,7 +12,5 @@
    @include('partials.home._testimonials')
 
 @vite('resources/js/app.js')
-<script>
-    console.log("Public Key:", "{{ env('MERCADO_PAGO_PUBLIC_KEY') }}");
-</script>
+
 @endsection

@@ -65,7 +65,14 @@ Route::get('/pago/fallido', [PaymentController::class, 'failure'])->name('paymen
 Route::get('/pago/pendiente', [PaymentController::class, 'pending'])->name('payment.pending');
 
 
+// Perfil -----------------
 
+Route::get('/perfil', [UsersController::class, 'profile'])->name('perfil');
+Route::get('/perfil/editar', [UsersController::class, 'updateUserView'])->name('perfil.edit.view');
+Route::patch('/perfil/editar', [UsersController::class, 'updateUserAuth'])->name('perfil.edit');
+
+
+// ------------------------
 
 // Panel de Administrador
 Route::get('admin', [AdminController::class, 'index'])

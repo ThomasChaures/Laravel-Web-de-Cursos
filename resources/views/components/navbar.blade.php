@@ -26,13 +26,16 @@
                         <span class="ml-2">Ir al Panel</span>
                     </a>
                 @else
-                <div class="relative group">
+                <div class="relative group flex gap-x-5">
                     <a href="{{ route('carrito') }}" id="cart-icon" class="text-black hover:text-blue-800 relative right-4">
                         <i class="fas fa-shopping-cart text-2xl"></i>
                         @if($cartCount > 0)
                             <span
                                 class="absolute -top-2 -right-2 bg-green-500 text-white text-xs rounded-full px-2">{{ $cartCount }}</span>
                         @endif
+                    </a>
+                    <a href="{{ route('perfil') }}" id="cart-icon" class="text-black hover:text-blue-800 relative right-4">
+                        <i class="fas fa-user text-2xl"></i>
                     </a>
                 </div>
                 @endif

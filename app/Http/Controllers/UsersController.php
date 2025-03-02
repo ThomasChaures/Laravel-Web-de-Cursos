@@ -82,12 +82,19 @@ class UsersController extends Controller
     
         return view('panel.users.edit', compact('usuario'));
     }
+
+
+    public static function profile(){
+        $usuario = User::find(auth()->id());
+        $cursos = $usuario && $usuario->servicios->isNotEmpty() ? $usuario->servicios : null;
+        return view('perfil', compact('usuario', 'cursos'));
+    }
     
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
         try {
             $usuario = User::find($id);
@@ -95,7 +102,8 @@ class UsersController extends Controller
             $request->validate([
                 'name' => 'required|string|max:100',
                 'email' => 'required|string|email|max:255|unique:users,email,' . $usuario->id,
-                'role_id' => 'required'
+                'role_id' => 'required',
+                'password_new' => 'string|min:8|confirmed'
             ], [
                 'name.required' => 'El nombre es obligatorio.',
                 'name.string' => 'El nombre debe ser un texto.',
@@ -114,7 +122,54 @@ class UsersController extends Controller
                 'role_id' => $request->role_id
             ]);
 
-            return redirect()->route('usuarios.index')->with('feedback', ['messages' => ['Usuario actualizado con éxito']]);
+            return redirect()->route('perfil')->with('feedback', ['messages' => ['Usuario actualizado con éxito']]);
+
+        } catch (Exception $e) {
+            return back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+
+    
+    public function updateUserView(Request $request){
+        $usuario = User::find(auth()->id());
+
+        return view('editar-perfil', compact('usuario'));
+    }
+    public function updateUserAuth(Request $request)
+    {
+        try {
+            $usuario = User::find(auth()->id());
+
+            $request->validate([
+                'name' => 'required|string|max:100',
+                'email' => 'required|string|email|max:255|unique:users,email,' . $usuario->id,
+                'password' => 'nullable|string|min:8|confirmed'
+            ], [
+                'name.required' => 'El nombre es obligatorio.',
+                'name.string' => 'El nombre debe ser un texto.',
+                'name.max' => 'El nombre no puede exceder los 100 caracteres.',
+                'email.required' => 'El correo electrónico es obligatorio.',
+                'email.string' => 'El correo electrónico debe ser un texto.',
+                'email.email' => 'Debes ingresar un correo electrónico válido.',
+                'email.max' => 'El correo electrónico no puede exceder los 255 caracteres.',
+                'email.unique' => 'Este correo electrónico ya está registrado.',
+            ]);
+
+           if($request->password){
+            $usuario->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->password
+            ]);
+           }else{
+            $usuario->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
+           }
+
+            return redirect()->route('perfil')->with('feedback', ['messages' => ['Usuario actualizado con éxito']]);
 
         } catch (Exception $e) {
             return back()->withErrors(['error' => $e->getMessage()]);

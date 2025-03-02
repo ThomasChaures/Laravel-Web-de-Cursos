@@ -29,6 +29,23 @@
             
             </div>
 
+
+            <div class="flex items-start flex-col w-full mt-4">
+            <label for="password" class="mb-3">Contraseña nueva</label>
+            <input id="password" name="password" type="password" 
+                   class="w-full block py-2 px-2 border rounded border-cyan-950">
+            @error('password')
+            <span class="flex w-full bg-red-500 text-white p-5">{{ $message }}</span>
+            @enderror
+             </div>
+
+                
+            <div class="flex items-start flex-col w-full mt-4">
+            <label for="password_confirmation"  class="mb-3">Repite la Contraseña nueva</label>
+            <input id="password_confirmation" name="password_confirmation" type="password" 
+            class="w-full block py-2 px-2 border rounded border-cyan-950">
+            </div>
+
             <div class="flex items-start flex-col w-full mt-4">
             <label class="mb-3" for="role_id">Rol</label>
             <select class="w-full block py-2 px-2 border rounded border-cyan-950" id="role_id" name="role_id">
