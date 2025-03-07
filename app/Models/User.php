@@ -20,7 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role_id' // Para conectar el usuario con su respectivo rol.
+        'role_id' 
     ];
 
     /**
